@@ -22,8 +22,8 @@ VAR WYRMCORPSE = 0
 // {DEPTH}
 + Intro -> Introduction
 + Mutiny -> Mutiny
-+ Wyrmglimpse -> WyrmGlimpse
-+ Wyrmrunin -> WyrmRunin
++ There! There! -> WyrmGlimpse
++ The Wyrm -> WyrmRunin
 + Celebrations! -> Birthday
 + Ever Deeper -> Drill_1
 + Ever Warmer -> Drill_2
@@ -33,8 +33,8 @@ VAR WYRMCORPSE = 0
 + Onwards -> Drill_4
 + Biscuits Again -> Ration_trouble
 + Rumbling On -> tracks
-+ Shuddering Creak -> weird_creaking
-+ A Bang, A Lurch -> tremor
++ A Creak -> weird_creaking
++ A Bang! -> tremor
 + Wyrmcast! -> Wyrmcast
 + Lost -> lost_trail
 + Gas! Gas! -> gasdanger
@@ -76,7 +76,7 @@ VAR WYRMCORPSE = 0
 You are Metic {PLAYERNAME}. You've been appointed captain of a scientific journey into the depths of the Earth; your mission, to find and study a Wyrm. Wyrms are dreadful beasts that thrive in the deep dark soil under the earth; you and your crew are prepared to do whatever it takes. Your reward; {~the endless gratitude of the philosopher-kings of Athens.|eternal fame and fortune.|the regard of high society.|a name in the legends.|your own personal seaside villa.|a mausoleum in the Field of the Wyrmchasers}
 Your target is the {~fearsome|great|mighty|worrisome|dread|nightmare-inducing|creepy|oft-theorised, never found|legendary|mythic|sonnet-spoken|epic-inspiring|overhyped} {WYRMDESC} {WYRMNAME}. The deeper you dig, the more difficult things will get; but the closer you'll come to finding the wyrm.
 {set (SEENINTRO,1)}
-- + -> Top
+- + [DRILL] -> Top
 
 === Mutiny ===
 Your crew are tired of being cooped up in this metal coffin. "{~We miss the sun!|We miss the sky!|I miss my family!|I miss fresh cheese!|We want to go home!|We want to see my family again!|I'm sick of dealing with you!|We can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms that much!|We're all going to die!}" they shout. A mutiny is brewing.
