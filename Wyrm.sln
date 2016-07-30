@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wyrm.CSharp", "Wyrm.CSharp.csproj", "{65FBE29D-F3E7-7FD2-4637-D9AEE8D1F4AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wyrm.CSharp", "wyrm.CSharp.csproj", "{A6A92431-66F2-84FC-C73B-61B943BD5A5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{65FBE29D-F3E7-7FD2-4637-D9AEE8D1F4AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65FBE29D-F3E7-7FD2-4637-D9AEE8D1F4AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65FBE29D-F3E7-7FD2-4637-D9AEE8D1F4AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65FBE29D-F3E7-7FD2-4637-D9AEE8D1F4AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A92431-66F2-84FC-C73B-61B943BD5A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A92431-66F2-84FC-C73B-61B943BD5A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A92431-66F2-84FC-C73B-61B943BD5A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A92431-66F2-84FC-C73B-61B943BD5A5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
