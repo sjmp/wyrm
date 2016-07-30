@@ -19,26 +19,24 @@ VAR SEENINTRO = 0
 // {DEPTH}
 + Intro -> Introduction
 + Mutiny -> Mutiny
-+ Birthday -> Birthday
-+ Drill -> Drill_1
-+ Other Drill -> Drill_2
-+ Dozing -> Dozing_off
-+ Concerns -> Concerns
-+ Other Other Drill -> Drill_3
-+ Other Other Other Drill -> Drill_4
-+ Rations -> Ration_trouble
-+ tracks -> tracks
-+ noises -> weird_creaking
-+ tremor -> tremor
-+ Wyrmcast -> Wyrmcast
-+ lost_trail -> lost_trail
-+ gasdanger -> gasdanger
-+ Diamonds -> Diamonds
-+ Shroom -> Shroom
-+ Encampment -> Encampment
-
-
-
++ Celebrations! -> Birthday
++ Ever Deeper -> Drill_1
++ Ever Warmer -> Drill_2
++ Downwards -> Dozing_off
++ A Knock -> Concerns
++ Deeper Still -> Drill_3
++ Onwards -> Drill_4
++ Biscuits Again -> Ration_trouble
++ Rumbling On -> tracks
++ Shuddering Creak -> weird_creaking
++ A Bang, A Lurch -> tremor
++ Wyrmcast! -> Wyrmcast
++ Lost -> lost_trail
++ Gas! Gas! -> gasdanger
++ Diamonds! -> Diamonds
++ Mushrooms -> Shroom
++ The Deep-Cave -> Encampment
++ The Heat -> sweltering
 
 ==function change(ref x, y)==
 ~x = x + y
@@ -197,8 +195,7 @@ Your scouts have reported something at the fringes of the drill-lights; somethin
 - + [DRILL] ->Top
 
 ==weird_creaking==
-Noises: {~Creaking.|Scraping.|Scratching|An ominous ululating noise.|A rasp of metal.|Something like skin rubbing against silk.|Squealing?|The sound... of a wyrm?}
-The crew are a bit nervous {change (MORALE,-2)}
+The hull vibrates with it. {~A foul creaking noise.|A high pitched scraping.|Scratching, over and over...|An ominous ululating noise.|The rasp of metal. Not the hull?|Something like skin rubbing against silk?|Squealing? That can't be rocks...|Not the sound... of a wyrm?}. The crews eyes swivel as they finger weapons. {change (MORALE,-2)}
 - + [DRILL] ->Top
 
 ==tremor==
@@ -224,16 +221,20 @@ Not worth the risk.{{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{c
 - + [DRILL] ->Top
 
 ==sweltering==
-The heat is getting to your crew. {change (MORALE,-3)}
+It's hideously hot. {~You swear you saw {greekname()} drinking... Something..|Fans just move the stifling air around in circles|There is no escape from it|It's impossible to sleep}. {change (MORALE,-3)}
+* [Divert for water] 
+    {~A day's diversion finds an underground river; You refill the onboard Baths, but the wyrm has pressed on without you...{change(DEPTH,-5)}{change(HEAT,-10)}|A day of pointless drilling; You find nothing. The heat feels so much worse for that wasted effort{change(DEPTH,-5)}{change(HEAT,5)}}.
++ [Soldier on]
+    {~The crew strip down to undergarments, and you join them. Hellenic spirit prevails!{change(MORALE, 10)|The crew clench their teeth and crack on, working tirelessly. The heat lingers. {change(MORALE, 5)}}}
 
 - + [DRILL] ->Top
 
 ==Diamonds==
-A vein of shiny diamonds. {greekname()} greedily eyes them up in the lamplight.
+A vein of shiny diamonds. {greekname()}'s eyes shine just as bright in the lamplight.
 +[Collect them]
-Your crew is happy! But now you're slower. {change (MORALE,5)} {change (DIAMONDS,1)}
+A bonus even your crew can't complain at! Except for the Stoker, whose engines now groan under the extra weight... {change (MORALE,5)} {change (DIAMONDS,1)}
 +[Go past them]
-The crew is sad but you make progress. {change (MORALE,-5)} {change (DEPTH,10)}
+Mutinous stares and grim faces, but you know the real prize awaits in the depths. {change (MORALE,-5)} {change (DEPTH,10)}
 - + [DRILL] -> Top
 
 ==Wyrmcast==
