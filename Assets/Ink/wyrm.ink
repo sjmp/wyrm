@@ -8,6 +8,7 @@ VAR HEAT = 0 // danger counter
 VAR SUPPLIES = 20 //generic fuel + food
 VAR DIAMONDS = 0
 VAR WYRMFLESH = 0
+VAR PROXIMTY = 0 //100 = You're on it
 VAR PLAYERNAME = ""
 VAR WYRMNAME = ""
 VAR WYRMDESC = ""
@@ -21,26 +22,26 @@ VAR WYRMCORPSE = 0
 // {DEPTH}
 + Intro -> Introduction
 + Mutiny -> Mutiny
-+ Birthday -> Birthday
-+ Drill -> Drill_1
-+ Other Drill -> Drill_2
-+ Dozing -> Dozing_off
-+ Concerns -> Concerns
-+ Other Other Drill -> Drill_3
-+ Other Other Other Drill -> Drill_4
-+ Rations -> Ration_trouble
-+ tracks -> tracks
-+ noises -> weird_creaking
-+ tremor -> tremor
-+ Wyrmcast -> Wyrmcast
-+ lost_trail -> lost_trail
-+ gasdanger -> gasdanger
-+ Diamonds -> Diamonds
-+ Shroom -> Shroom
-+ Encampment -> Encampment
 + Wyrmglimpse -> WyrmGlimpse
 + Wyrmrunin -> WyrmRunin
-
++ Celebrations! -> Birthday
++ Ever Deeper -> Drill_1
++ Ever Warmer -> Drill_2
++ Downwards -> Dozing_off
++ A Knock -> Concerns
++ Deeper Still -> Drill_3
++ Onwards -> Drill_4
++ Biscuits Again -> Ration_trouble
++ Rumbling On -> tracks
++ Shuddering Creak -> weird_creaking
++ A Bang, A Lurch -> tremor
++ Wyrmcast! -> Wyrmcast
++ Lost -> lost_trail
++ Gas! Gas! -> gasdanger
++ Diamonds! -> Diamonds
++ Mushrooms -> Shroom
++ The Deep-Cave -> Encampment
++ The Heat -> sweltering
 
 
 
@@ -62,6 +63,9 @@ VAR WYRMCORPSE = 0
 
 ==function wormspecies()==
 ~ return "{~Platyhelm|Cest|Acoelo|Nema|Tetra|Helm|Bilatere|Tentaculario|Diphyll|Mono|Turbella}{~inth|mate|ode|gene|ide|annelid|bothride|ozoa|aria}"
+
+==function crewType()==
+~ return "{~First Anthyposminagos|Spearman|Philosopher-Officer|Deck Hand|Second Navarchos|Stoker|Alchemist}"
 
 ==function wormdescription()==
  ~return "{~Red|White|Black|Orange|Bronze|Gold|Blue|Fanged|Slime|Parasitic|Dark|Bloody|Wyrm|Helm of the|}"
@@ -151,14 +155,18 @@ The efforts of Athens' finest minds have gotten you this far, but even they must
 ->Drill_1.lazytime
 
 ==Concerns==
-{greekname()} is worried about something: "{~It's not my birthday yet.|I don't like weird noises|I wish you'd stop slacking off||I don't want to be stuck here.|Will we ever find the wyrm?|What do we even do when we find the wyrm?|What does a wyrm even look like?|Why are we doing this?}"
+~temp CREWTYPE = crewType()
+//{~OFFICER|SOLDIER|SCIENTIST|CREW|NAVIGATOR|OTHER|ENGINEER}
+
+{CREWTYPE} {greekname()} comes to your office {~slouching against a wall|wringing their hands|far too early for this sort of thing}; "{I can't sleep, see, with all the noise, so I've been thinking...|Cap, us and the boys have been talking|I've had a word with the {crewType()}, see...}" they say "{-HEAT > 10:Reckon the hull can't take much more of this heat. We need to find a way to cool it, and fast.|What are we going to do when we find this wyrm?}"
 +[Reassure them]
-All shall be well, and maybe all manner of thing too. {They're reassured, for now {change (MORALE,2)}|They aren't buying it {change (MORALE,-2)}}.
+"All shall be well, and maybe all manner of thing too!" {With that, they're reassured. For now. {change (MORALE,2)}|... But they aren't buying it. {change (MORALE,-2)}}
 +[Yell at them]
-What's their problem? You're the captain here, and you're doing fine; that's what matters. {Somehow, it works. {change (MORALE,4)}|They obviously aren't happy after that. {change (MORALE,-4)}}
+Must you do everything on this damn digger!? You're the captain here, and you're doing fine; that's what matters. {~Somehow, it works. The {CREWTYPE} slinks away. {change (MORALE,4)}|All nods and humble mutterings, but the {CREWTYPE} isn't one to forget this kind of thing. {change (MORALE,-4)}}
 +[Ignore them]
-Not your problem. {They soon calm down {change (MORALE,1)}|They remain quite worried {change (MORALE,-1)}}
+Not your problem. {There's an Officer for this kind of thing; usually is, anyway.{change (MORALE,1)}|The worry stays etched on their face as they rush back out.{change (MORALE,-1)}}
 - + [DRILL] ->Top
+
 
 ==Dozing_off==
 The constant whir of the drill feels almost restful. Nobody will mind if you just lie here for a moment...
@@ -195,8 +203,7 @@ Your scouts have reported something at the fringes of the drill-lights; somethin
 - + [DRILL] ->Top
 
 ==weird_creaking==
-Noises: {~Creaking.|Scraping.|Scratching|An ominous ululating noise.|A rasp of metal.|Something like skin rubbing against silk.|Squealing?|The sound... of a wyrm?}
-The crew are a bit nervous {change (MORALE,-2)}
+The hull vibrates with it. {~A foul creaking noise.|A high pitched scraping.|Scratching, over and over...|An ominous ululating noise.|The rasp of metal. Not the hull?|Something like skin rubbing against silk?|Squealing? That can't be rocks...|Not the sound... of a wyrm?}. The crews eyes swivel as they finger weapons. {change (MORALE,-2)}
 - + [DRILL] ->Top
 
 ==tremor==
@@ -222,16 +229,20 @@ Not worth the risk.{{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{c
 - + [DRILL] ->Top
 
 ==sweltering==
-The heat is getting to your crew. {change (MORALE,-3)}
+It's hideously hot. {~You swear you saw {greekname()} drinking... Something..|Fans just move the stifling air around in circles|There is no escape from it|It's impossible to sleep}. {change (MORALE,-3)}
+* [Divert for water] 
+    {~A day's diversion finds an underground river; You refill the onboard Baths, but the wyrm has pressed on without you...{change(DEPTH,-5)}{change(HEAT,-10)}|A day of pointless drilling; You find nothing. The heat feels so much worse for that wasted effort{change(DEPTH,-5)}{change(HEAT,5)}}.
++ [Soldier on]
+    {~The crew strip down to undergarments, and you join them. Hellenic spirit prevails!{change(MORALE, 10)|The crew clench their teeth and crack on, working tirelessly. The heat lingers. {change(MORALE, 5)}}}
 
 - + [DRILL] ->Top
 
 ==Diamonds==
-A vein of shiny diamonds. {greekname()} greedily eyes them up in the lamplight.
+A vein of shiny diamonds. {greekname()}'s eyes shine just as bright in the lamplight.
 +[Collect them]
-Your crew is happy! But now you're slower. {change (MORALE,5)} {change (DIAMONDS,1)}
+A bonus even your crew can't complain at! Except for the Stoker, whose engines now groan under the extra weight... {change (MORALE,5)} {change (DIAMONDS,1)}
 +[Go past them]
-The crew is sad but you make progress. {change (MORALE,-5)} {change (DEPTH,10)}
+Mutinous stares and grim faces, but you know the real prize awaits in the depths. {change (MORALE,-5)} {change (DEPTH,10)}
 - + [DRILL] -> Top
 
 ==Wyrmcast==
