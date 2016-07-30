@@ -32,6 +32,11 @@ namespace Assets.Drilling
             InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
             InkStory.Continue();
 
+            if (InkStory.currentText == "")
+            {
+                NewBox();
+            }
+
             //Setup the box
             CurrentBox = CreateBox();
             TitleText.text = InkStory.currentText;
@@ -57,9 +62,9 @@ namespace Assets.Drilling
 
             NewBody();
 
-            if (InkStory.currentChoices.All(x => x.text != "DRILL"))
+            if (InkStory.currentChoices.All(x => x.text != "DRILL") || InkStory.currentChoices.Count == 0)
             {
-                foreach (var choice in InkStory.currentChoices.Distinct())
+                foreach (var choice in InkStory.currentChoices)
                 {
                     var i = choice.index;
                     var go = NewButton(choice.text);
