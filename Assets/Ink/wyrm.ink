@@ -4,6 +4,7 @@ VAR MORALE = 0 // straightforward
 + Birthday -> Birthday
 
 ~x = x + y
+~ x = y
 === Mutiny ===
 Your crew are tired of being cooped up in this metal coffin. They say;{random stuff about the sky and sun and all that|}. A mutiny is brewing.
 +{not Rebellion}Try to talk them around. ->Diplomacy
@@ -30,8 +31,11 @@ You execute a crewman right there and then! Their loyalty is reinvigorated, for 
 - ->Top
 
 === Birthday ===
+It's {&Eratosthenes|Doreios|Narkissos|Hephaestos|Coes|Percalus|Euphro|Phylace|Limnoreia|Megaera}'s birthday today!
+{Birthday}
++Throw them a party.
 
---> Top
+- -> Top
 
 
 == Drill_1 ==
@@ -44,7 +48,8 @@ Your drill churns ever onward, through miles of dirt and stone. You have a quiet
 +[Encourage the stokers]
     They tell you that they could increase the speed, but it'll ding the hull
         ++[Make it so!]
-        They dutifully start shoveling fuel. {~change(SPEED,1) ~change HP(HP,-10) ~drill}
+        They dutifully start shoveling fuel. 
+        {~change(SPEED,1) ~change HP(HP,-10) ~drill}
         ++Nah, never mind
         -- ->Top
 
