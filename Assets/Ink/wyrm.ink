@@ -1,10 +1,34 @@
 === Top ===
+VAR CREW = 0 // straightforward
 VAR MORALE = 0 // straightforward
+VAR DEPTH = 0 // deep depths, deep rewards
+VAR SPEED = 0 // effected by drill power and depth
+VAR HP = 0 // hull strength
+VAR HEAT = 0 // danger counter
+VAR SUPPLIES = 0 //generic fuel + food
 
++ Mutiny -> Mutiny
 + Birthday -> Birthday
++ Drill -> Drill_1
++ Other Drill -> Drill_2
 
+==function change(ref x, y)==
 ~x = x + y
+
+==function set(ref x, y)==
 ~ x = y
+
+==function drill==
+~DEPTH=1+SPEED
+~SUPPLIES= SUPPLIES-1
+~HEAT=1+(SPEED * 0.5)
+
+==function greekname==
+~return 
+
+==function wormtype==
+~ return
+
 === Mutiny ===
 Your crew are tired of being cooped up in this metal coffin. They say;{random stuff about the sky and sun and all that|}. A mutiny is brewing.
 +{not Rebellion}Try to talk them around. ->Diplomacy
