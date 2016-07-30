@@ -52,7 +52,7 @@ Diplomacy never hurt anyone; but it takes time, time, precious time, while all t
     They warn you; they won't listen again. 
     ~change(HEAT,4)
 *[] No matter how hard you try, it's impossible to put forward a reasonable argument. You are swiftly deposed, and your crew start the long journey back to the surface. -> END
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 =Rebellion
 Brutal, short and to the point; violence is the answer to many questions.
@@ -66,7 +66,7 @@ Brutal, short and to the point; violence is the answer to many questions.
     Holing up in the captain's office, you fight and fight and fight. In the end, you're left terribly wounded; you'll never survive another battle like this. 
     ~change(CREW,-3)
 *[] It's no good; your crew's loyalty is frayed, and you won't last a second in a fight. Give up, return to the surface. -> END
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 === Birthday ===
 ~temp birthdayboy = greekname()
@@ -75,7 +75,7 @@ It's {birthdayboy}'s birthday today! {|It's considered lucky to have two birthda
     Hooray! {birthdayboy} is happy{change (MORALE,7)}, but {~they've used your supplies to bake and eat a really big cake {change (SUPPLIES,-1)}|they won't be in the morning...{change (MORALE,-5)}|someone has drunkenly punched a hole in a wall {change (HP,-5)}}.
 +Ignore them.
 {birthdayboy} and all their friends are very sad. {change (MORALE,-5)}
-- + DRILL -> Top
+- + [DRILL] -> Top
 
 
 == Drill_1 ==
@@ -92,12 +92,12 @@ Your drill churns ever onward, through miles of dirt and stone. You have a quiet
         {change (SPEED,1)}
         They dutifully start shoveling fuel. 
         ++Nah, never mind
-        -- + DRILL ->Top
+        -- + [DRILL] ->Top
 
 +[Gaze out the window]
 {Dirt, rocks, dark.|Still dirt, rocks and dark.|Occasionally, dark rocks and dirt.|Sometimes there's even dirt.|No wyrms here.|Nothing to see here.|Wait, were those tracks? ->tracks|Looking out the window is always wildly exciting.|Nothing better than some window-looking.|Nice.}
 
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 == Drill_2 ==
 Your drill is a great corkscrew sheathed in steel, spiraling ever downwards. Every now and then, it digs up trouble; but not today.
@@ -118,7 +118,7 @@ All shall be well, and maybe all manner of thing too. {They're reassured, for no
 +[Yell at them]
 What's their problem? You're the captain here, and you're doing fine; that's what matters. {Somehow, it works. {change (MORALE,4)}|They obviously aren't happy after that. {change (MORALE,-4)}}
 +[Ignore them]
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==Dozing_off==
 The constant whir of the drill feels almost restful. Nobody will mind if you just lie here for a moment...
@@ -126,54 +126,54 @@ The constant whir of the drill feels almost restful. Nobody will mind if you jus
     There's no time to dream!
 +[Doze off]
 Just close your eyes for a bit, it'll be fine ->Dreams
-- + DRILL->Top
+- + [DRILL]->Top
 
 ==Dreams==
 {~{Tunnelling, tunnelling, tunnelling.| The dirt parts before you.|You pass through the soil like a fish in water.|The tracks you leave behind are a testament to your majesty.|You are strong, fast, invincible.|Rumbling, far off.|Protect the brood!|There has never been a {wormspecies()} greater than you.}|{The endless bowels of the earth.|A twisting maze of many tunnels, all unalike.|You could wander here forever.|You may never return home.|What way are you going?| What way is up?|What way is home?|Where is the sky?}{Turn, rotate, spin.|Carving your own path|Spiraling inwards, towards a definite point, eternally.|The wide becomes thin, becomes wide again.|Pierce the vault of the earth.|Your body is a stair; your head, a spear.|Guide them forward.|A drill for them all.}}
 {->Dreams|->Dreams|You stir in your slumber. -> Dozing_off|You bolt upright, wide awake!}
-+ DRILL ->Top
++ [DRILL] ->Top
 
 ==Ration_trouble==
 Running low on food.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==engine_malfunction==
 Engine making weird noises. 
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==tracks==
 Not the wyrmtrack you're following. Or is it?
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==weird_creaking==
 Noises, but not the usual noises.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==tremor==
 All the world atremble.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==lost_trail==
 You've lost sight of the wyrmtrack somewhere in all the dirt and darkness.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==wallscrawl==
 Someone's vandalised a wall.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==airpocket==
 Giant ol' gap full of nothing. What caused it?? drill's not built for this.
 
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==gasdanger==
 Chief Aeoliphile warns you that you're running straight into a pocket of gas.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==disagreement==
 Two crew are very upset at each other.
-- + DRILL ->Top
+- + [DRILL] ->Top
 
 ==sweltering==
 The heat is getting to your crew.
-- + DRILL ->Top
+- + [DRILL] ->Top
