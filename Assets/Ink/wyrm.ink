@@ -10,10 +10,13 @@ VAR SUPPLIES = 20 //generic fuel + food
 {wormspecies()}
 {drill()}
 {DEPTH}
+TOP
 + Mutiny -> Mutiny
 + Birthday -> Birthday
 + Drill -> Drill_1
 + Other Drill -> Drill_2
++ Dozing -> Dozing_off
+
 
 
 ==function change(ref x, y)==
@@ -127,7 +130,8 @@ Just close your eyes for a bit, it'll be fine ->Dreams
 - + ->Top
 
 ==Dreams==
-{~Burrowing{Tunnelling, tunnelling, tunnelling.| The dirt parts before you.|You pass through the soil like a fish in water.|The tracks you leave behind are a testament to your majesty.|You are strong, fast, invincible.|Rumbling, far off.|Protect the brood!|There has never been a {wormspecies()} greater than you.}|Lost{The endless bowels of the earth.|A twisting maze of many tunnels, all unalike.|You could wander here forever, 'til you}|Drill{Turn, rotate, spin.|}}
+{~Burrowing{Tunnelling, tunnelling, tunnelling.| The dirt parts before you.|You pass through the soil like a fish in water.|The tracks you leave behind are a testament to your majesty.|You are strong, fast, invincible.|Rumbling, far off.|Protect the brood!|There has never been a {wormspecies()} greater than you.}|Lost{The endless bowels of the earth.|A twisting maze of many tunnels, all unalike.|You could wander here forever.|You may never return home.|The }|Drill{Turn, rotate, spin.|Carving your own path|Spiraling inwards, towards a definite point, eternally.|The wide becomes thin, becomes wide again.|Pierce the vault of the earth.|Your body is a stair; your head, a spear.|Guide them forward.|A drill for them all.}}
+{->Dreams|->Dreams|You stir in your slumber. -> Dozing_off|You bolt upright, wide awake! + ->Top}
 
 ==Ration_trouble==
 Running low on food.
