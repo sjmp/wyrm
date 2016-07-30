@@ -1,11 +1,8 @@
 === Top ===
-{shuffle:
-- -> Mutiny
-- -> Birthday
-}
+VAR TEMP = 0
 
--> END
-
+* {TEMP > 3} Mutiny -> Mutiny
+* Birthday -> Birthday
 
 
 === Mutiny ===
