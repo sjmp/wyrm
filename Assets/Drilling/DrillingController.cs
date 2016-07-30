@@ -54,9 +54,7 @@ namespace Assets.Drilling
             if (InkStory.canContinue)
             {
                 InkStory.Continue();
-
                 NewBody();
-
 
                 foreach (var choice in InkStory.currentChoices)
                 {
@@ -65,7 +63,7 @@ namespace Assets.Drilling
                     go.GetComponentInChildren<Button>().onClick.AddListener(delegate { Select(i, go); });
                     Buttons.Add(go);
                 }
-                
+
             }
             else
             {

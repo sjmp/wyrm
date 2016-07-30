@@ -7,10 +7,9 @@ VAR HP = 100 // hull strength
 VAR HEAT = 0 // danger counter
 VAR SUPPLIES = 20 //generic fuel + food
 
-{wormspecies()}
-{drill()}
-{DEPTH}
-TOP
+// {wormspecies()}
+// {drill()}
+// {DEPTH}
 + Mutiny -> Mutiny
 + Birthday -> Birthday
 + Drill -> Drill_1
