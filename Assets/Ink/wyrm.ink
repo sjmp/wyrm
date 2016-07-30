@@ -1,9 +1,9 @@
 === Top ===
+Test
 VAR TEMP = 0
 
 * {TEMP > 3} Mutiny -> Mutiny
-* Birthday -> Birthday
-
+* Birthday title -> Birthday
 
 === Mutiny ===
 {
@@ -19,7 +19,7 @@ A mutiny has occured
 
 
 === Birthday ===
-It's crewman Jones' birthday. There is no cake.
+It's crewman Jones' birthday. There is no cake. It's crewman Jones' birthday. There is no cake.It's crewman Jones' birthday. There is no cake.It's crewman Jones' birthday. There is no cake.It's crewman Jones' birthday. There is no cake.It's crewman Jones' birthday. 
 + Sing happy birthday 
     Crewman Jones cries with joy
 + Ignore him
