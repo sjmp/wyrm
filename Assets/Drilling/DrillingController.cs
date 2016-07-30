@@ -11,62 +11,110 @@ namespace Assets.Drilling
     {
         public TextAsset InkAsset;
         public Story InkStory;
-        public Text TitleText;
-        public Image ScrollContent;
+        public static Text TitleText; 
+        public static Image ScrollContent; 
         public List<GameObject> Buttons;
+        public Image BackgroundImage;
+        public GameObject CurrentBox;
 
         // Use this for initialization
         void Start ()
         {
+            //Setup
             InkStory = new Story(InkAsset.text);
             InkStory.Continue();
 
-            InkStory.ChooseChoiceIndex(0);
+            NewBox();
+        }
+
+        public void NewBox()
+        {
+            //Choose and enter a random story
+            InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
             InkStory.Continue();
 
+            //Setup the box
+            CurrentBox = CreateBox();
             TitleText.text = InkStory.currentText;
             AddBlock();
         }
 
+        public GameObject CreateBox()
+        {
+            GameObject go = (GameObject)Instantiate(Resources.Load("TextBox"));
+            go.transform.SetParent(BackgroundImage.gameObject.transform, false);
+            TitleText = go.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponentInChildren<Text>();
+            ScrollContent = go.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
+            return go;
+        }
+
+
         public void AddBlock()
         {
-            InkStory.Continue();
-
-            GameObject bodyText = (GameObject)Instantiate(Resources.Load("BodyText"));
-            bodyText.transform.SetParent(ScrollContent.gameObject.transform);
-
-            bodyText.GetComponent<Text>().text = InkStory.currentText;
-
-            if (InkStory.currentChoices[0].pathStringOnChoice == "Top")
+            if (InkStory.canContinue)
             {
-                GameObject go = (GameObject)Instantiate(Resources.Load("Button"));
-                go.transform.SetParent(ScrollContent.gameObject.transform);
-                go.GetComponentInChildren<Text>().text = "DRILL";
+                InkStory.Continue();
+
+                NewBody();
+
+
+                foreach (var choice in InkStory.currentChoices)
+                {
+                    var i = choice.index;
+                    var go = NewButton(choice.text);
+                    go.GetComponentInChildren<Button>().onClick.AddListener(delegate { Select(i, go); });
+                    Buttons.Add(go);
+                }
+                
+            }
+            else
+            {
+                NewBody();
+                var go = NewButton("DRILL...");
+                go.GetComponentInChildren<Button>().onClick.AddListener(DeleteBox);
             }
 
-            foreach (var choice in InkStory.currentChoices)
-            {
-                GameObject go = (GameObject)Instantiate(Resources.Load("Button"));
-                go.transform.SetParent(ScrollContent.gameObject.transform);
-                go.GetComponentInChildren<Text>().text = choice.text;
-                go.GetComponentInChildren<Button>().onClick.AddListener(delegate { Select(choice.index, go); });
-                Buttons.Add(go);
-            };
+
         }
 
         public void Select(int index, GameObject go)
         {
-            foreach (var button in Buttons.Where(x => x != go))
+            Buttons.Remove(go);
+            foreach (var button in Buttons)
             {
                 Destroy(button);
             }
             go.GetComponent<Button>().interactable = false;
             InkStory.ChooseChoiceIndex(index);
-
+            if (InkStory.canContinue)
+            {
+                InkStory.Continue();
+            }
+  
             AddBlock();
         }
 
-        
+
+        public void DeleteBox()
+        {
+            Destroy(CurrentBox);
+            NewBox();
+        }
+
+        private void NewBody()
+        {
+            GameObject bodyText = (GameObject)Instantiate(Resources.Load("BodyText"));
+            bodyText.transform.SetParent(ScrollContent.gameObject.transform);
+            bodyText.GetComponent<Text>().text = InkStory.currentText;
+        }
+
+        private GameObject NewButton(string text)
+        {
+            GameObject go = (GameObject)Instantiate(Resources.Load("Button"));
+            go.transform.SetParent(ScrollContent.gameObject.transform);
+            go.GetComponentInChildren<Text>().text = text;
+            return go;
+        }
 
         public int RandomTo(int max)
         {
