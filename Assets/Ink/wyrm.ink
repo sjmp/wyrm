@@ -14,8 +14,6 @@ VAR WYRMNAME = ""
 VAR WYRMDESC = ""
 VAR SEENINTRO = 0
 VAR SEENWORM = 0
-VAR OBSERVATION = 0
-VAR WYRMCORPSE = 0
 
 // {wormspecies()}
 // {drill()}
@@ -89,7 +87,7 @@ Diplomacy never hurt anyone; but it takes time, time, precious time, while all t
     If we turn back now, what was the point of all this? Some of your crew mumble in agreement; but that argument isn't likely to work twice.
     ~change(HEAT,2)
 *{Mutiny>1}[Put it to a vote]
-    The vote runs close; in the end, your vote breaks the tie. 
+    It runs close; in the end, your vote breaks the tie. 
     ~change(HEAT,3)
 *{Mutiny>2}[Struggle, one last time, to persuade them.]
     They warn you; they won't listen again. 
@@ -288,53 +286,32 @@ You have your notepad ready. Steel yourself. ->Toolate
 =Toolate
 The drill pierces the thick levee of soil the wyrm disturbed. But too slow, too little, too late! You arrive only in time to see the wyrm insinuating itself further and further into the earth. But you have it now; wyrms find the vibrations of the drill impossibly enticing. It'll dance around you like a moth around a flame; and when it comes, you'll be ready.
 +[Exhale that breath you've been holding.]
--> Top
+- + [DRILL] ->Top
 
 ==WyrmRunin
 {set (SEENWORM,1)}
-A rumbling from above! "It's {WYRMDESC} {WYRMNAME}!", the shout comes up. 
-The wyrm has pierced your tunnel; this is the best chance you're going to have to get up close and personal.
-But what will you do with the wyrm when you reach it?
-+[Complete your mission: Study the wyrm for science]
-    You've been given a task, and you intend to complete it; even if it seems mundane. 
-    ->WyrmChaseScience
-+[Ignore that: Ramming speed!]
-    Killing a wyrm has a glory of its very own. Turn your wyrmdigger to face the beast head-on. 
-    ->WyrmChaseMurder
+A rumbling from above! "It's {WYRMDESC} {WYRMNAME}!", the shout comes up. The wyrm has pierced your tunnel; this is the best chance you're going to have to get up close and personal. But what will you do with the wyrm when you reach it?
++[Complete your mission: Study the wyrm for science] You've been given a task, and you intend to complete it; even if it seems mundane.  ->WyrmChaseScience
++[Ignore that: Ramming speed!] Killing a wyrm has a glory of its very own. Turn your wyrmdigger to face the beast head-on. ->WyrmChaseMurder
 
 ==WyrmChaseScience
 Hand your notebook to a scribe; it'll be easier if you can dedicate all your focus to {WYRMDESC} {WYRMNAME}.
-+[Note down what you're seeing]
-Head-on accounts of wyrms like this are rare. You manage to bark out half a description of {~its peristaltic gyrations|its birdlike maw|its crennelated sides|its vicious tentrils}, but it sweeps upon you with terrible speed! 
-This is the best view of a wyrm you're ever going to get!
-->ScienceEnding
-+Enough![] 
-The wyrm is right there! It's time to flee, before there's nothing left of you.
++[Note down what you're seeing] Head-on accounts of wyrms like this are rare. You manage to bark out half a description of {~its peristaltic gyrations|its birdlike maw|its crennelated sides|its vicious tentrils}, but it sweeps upon you with terrible speed! This is the best view of a wyrm you're ever going to get! ->ScienceEnding
++Enough![] The wyrm is right there! It's time to flee, before there's nothing left of you.
 ->LoserEnding
 
 ==WyrmChaseMurder
-Charge! Your drill takes time to align, but the wyrm's still some distance away. You ready a battlecry: "{Down with wyrms!|Death to {WYRMNAME}|For science!|For Athens!|For {PLAYERNAME}!|For {greekname()}!}". It's not very good, but you're only a scientist.
-The wyrm's great maw descends upon you, and everything turns black.
-->MurderEnding
-Enough![]
-Face a Wyrm in single combat? You? You're a scientist, not a warrior!
-->LoserEnding
+Charge! Your drill takes time to align, but the wyrm's still some distance away. You ready a battlecry: "{Down with wyrms!|Death to {WYRMNAME}|For science!|For Athens!|For {PLAYERNAME}!|For {greekname()}!}". It's not very good, but you're only a scientist. The wyrm's great maw descends upon you, and everything turns black. ->MurderEnding
++ Enough![] Face a Wyrm in single combat? You? You're a scientist, not a warrior! ->LoserEnding
 
 ==ScienceEnding
-The inside of a Wyrm! Nobody has ever been inside a wyrm and survived before!
-This is, as it turns out, for good reason. Your drill is crushed and crumpled to nothing by the wyrm's great digestion. On the bright side, if anyone ever manages to find your mangled wyrmdigger, they'll find the most comprehensive account of a wyrm's bowels on or under the earth.
--> END
+The inside of a Wyrm! Nobody has ever been inside a wyrm and survived before! This is, as it turns out, for good reason. Your drill is crushed and crumpled to nothing by the wyrm's great digestion. On the bright side, if anyone ever manages to find your mangled wyrmdigger, they'll find the most comprehensive account of a wyrm's bowels on or under the earth. -> END
 
 ==MurderEnding
-Cackling maniacally, your driller rockets towards the {WYRMDESC} {WYRMNAME}, powered by Alexandria's finest engines. Few wyrmchasers have ever fought a wyrm and survived; for good reason, as it turns out. The inside of a wyrm is terribly hostile towards anything that isn't a wyrm, and your wyrmdriller certainly wasn't built for it. A swarm of tiny parasitic {wormspecies()}'s lunge for your driller, burrowing into every crack and crevice of your ship. You hear {crewType()} {greekname()} scream; then you, too, are beset by wyrms.
-Somehow, your foolish endeavour actually ended well. Your driller managed to stumble forward and pierce the wyrm's tiny brain, ending its life instantly. Some day, someone may find the husk of the wyrm; and your drill, crewed by skeletons.
-->END
+Cackling maniacally, your driller rockets towards the {WYRMDESC} {WYRMNAME}, powered by Alexandria's finest engines. Few wyrmchasers have ever fought a wyrm and survived; for good reason, as it turns out. The inside of a wyrm is terribly hostile towards anything that isn't a wyrm, and your wyrmdriller certainly wasn't built for it. A swarm of tiny parasitic {wormspecies()}'s lunge for your driller, burrowing into every crack and crevice of your ship. You hear {crewType()} {greekname()} scream; then you, too, are beset by wyrms. Somehow, your foolish endeavour actually ended well. Your driller managed to stumble forward and pierce the wyrm's tiny brain, ending its life instantly. Some day, someone may find the husk of the wyrm; and your drill, crewed by skeletons. ->END
 
 ==LoserEnding
-Your nerve doesn't hold; you flee from the wyrm before it falls upon you with all its slithering might. 
-The surface is far, far, far away, and your crew is scattered or dazed or half-dead. Eventually, your drill shudders to a halt; the sane and stable among you, few though you are, manage to crawl through a tunnel into a fungal cavern. You live out the rest of your days there, and never see the sun again. It's not a good life, and you wonder what you might have gained, if you had managed to steel yourself just a moment longer.
-->END
+Your nerve doesn't hold; you flee from the wyrm before it falls upon you with all its slithering might. The surface is far, far, far away, and your crew is scattered or dazed or half-dead. Eventually, your drill shudders to a halt; the sane and stable among you, few though you are, manage to crawl through a tunnel into a fungal cavern. You live out the rest of your days there, and never see the sun again. It's not a good life, and you wonder what you might have gained, if you had managed to steel yourself just a moment longer. ->END
 
 ==HullEnding
-Your drill comes apart! Your hull falls to pieces! Your engine, tired with mistreatment, explodes! The long and short of it is that you are dead.
-->END
+Your drill comes apart! Your hull falls to pieces! Your engine, tired with mistreatment, explodes! The long and short of it is that you are dead. ->END
