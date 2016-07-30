@@ -28,7 +28,7 @@ VAR SEENWORM = 0
 + Mutiny -> Mutiny
 + There! There! -> WyrmGlimpse
 + The Wyrm -> WyrmRunin
-+ Celebrations! -> Birthday
++ A Party! -> Birthday
 + Ever Deeper -> Drill_1
 + Ever Warmer -> Drill_2
 + Downwards -> Dozing_off
@@ -228,9 +228,9 @@ Not worth the risk.{{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{c
 ==sweltering==
 It's hideously hot. {~You swear you saw {greekname()} drinking... Something..|Fans just move the stifling air around in circles|There is no escape from it|It's impossible to sleep}. {change (MORALE,-3)}
 * [Divert for water] 
-    {~A day's diversion finds an underground river; You refill the onboard Baths, but the wyrm has pressed on without you...{change(DEPTH,-5)}{change(HEAT,-10)}|A day of pointless drilling; You find nothing. The heat feels so much worse for that wasted effort{change(DEPTH,-5)}{change(HEAT,5)}}.
+    {~A day's diversion finds an underground river; You refill the onboard Baths, but the wyrm has pressed on without you...{change(DEPTH,-5)}{change(HEAT,-10)}|A day of pointless drilling; You find nothing. The heat feels so much worse for that wasted effort {change(DEPTH,-5)}{change(HEAT,5)}}.
 + [Soldier on]
-    {~The crew strip down to undergarments, and you join them. Hellenic spirit prevails!{change(MORALE, 10)|The crew clench their teeth and crack on, working tirelessly. The heat lingers. {change(MORALE, 5)}}}
+    {~The crew strip down to undergarments, and you join them. Hellenic spirit prevails!{change(MORALE,15)} |The crew clench their teeth and crack on, working tirelessly. The heat lingers. {change(MORALE, 5)}}
 
 - + [DRILL] ->Top
 
