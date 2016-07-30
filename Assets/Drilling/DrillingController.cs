@@ -18,6 +18,7 @@ namespace Assets.Drilling
         public GameObject CurrentBox;
         public Image Wyrm;
         public bool UnleashTheWyrm = false;
+        public bool AtStart = true;
 
         // Use this for initialization
         void Start ()
@@ -31,17 +32,19 @@ namespace Assets.Drilling
 
         public void NewBox()
         {
-            //Check for WYRM!!!
-            var worm = InkStory.variablesState["SEENWORM"];
-            if (worm.Equals(1))
+
+
+            if (!AtStart)
             {
-                Debug.Log("FIRE");
-                UnleashTheWyrm = true;
+                //Choose and enter a random story
+                InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
+                InkStory.Continue();
+            }
+            else
+            {
+                AtStart = false;
             }
 
-            //Choose and enter a random story
-            InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
-            InkStory.Continue();
 
             if (InkStory.currentText == "")
             {
@@ -51,6 +54,14 @@ namespace Assets.Drilling
 
             //Setup the box
             CurrentBox = CreateBox();
+
+            //Check for WYRM!!!
+            var worm = (int) InkStory.variablesState["SEENWORM"];
+            if (worm == 1)
+            {
+                Debug.Log("FIRE");
+                UnleashTheWyrm = true;
+            }
 
             if (InkStory.currentText.Length > 10)
             {
