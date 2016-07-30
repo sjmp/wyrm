@@ -12,6 +12,9 @@ VAR PLAYERNAME = ""
 VAR WYRMNAME = ""
 VAR WYRMDESC = ""
 VAR SEENINTRO = 0
+VAR SEENWORM = 0
+VAR OBSERVATION = 0
+VAR WYRMCORPSE = 0
 
 // {wormspecies()}
 // {drill()}
@@ -35,6 +38,9 @@ VAR SEENINTRO = 0
 + Diamonds -> Diamonds
 + Shroom -> Shroom
 + Encampment -> Encampment
++ Wyrmglimpse -> WyrmGlimpse
++ Wyrmrunin -> WyrmRunin
+
 
 
 
@@ -256,3 +262,54 @@ You swap {~some surface-trinkets|a few poems|some manuscripts} for materials. {c
     They shower you with gifts! Most of them aren't terribly useful, but you manage to gather some supplies and material for the hull. Getting rid of the diamonds lightened your load, too.
     {change (SUPPLIES,8)} {change (HP,20)} {change (DIAMONDS,-1)} {change (SPEED,1)}
     - + [DRILL] -> Top
+    
+==WyrmGlimpse==
+Shouting from the observation deck! There've been sightings of something pale and undulating, just beyond the drill's tip. Could it be the {WYRMDESC} {WYRMNAME} you've been hunting?
++[Charge onwards recklessly!]
+    This is it! This is what you've been looking for! You whip the stokers up into a frenzy, and the wyrmdigger lurches forward, scraping along the tunnel walls. {change (SPEED,1)} {change (HP,-5)}
++[Cautiously advance]
+    You've come this far; no need to throw it all away at the final hurdle. Slowly, steadily, your drill weaves its way into the wyrm's tunnel.
+-    ->Glimpse2
+=Glimpse2
+Your drill cracks through the levee of the wyrm's tunnel. Piercing the layer of the wyrm's tunnel takes time; slowly, slowly, slowly but surely, you ease your way into the great beast's tunnel.
++[Ready...]
+You have your notepad ready. Steel yourself. ->Toolate
+
+=Toolate
+The drill pierces the thick levee of soil the wyrm disturbed. But too slow, too little, too late! You arrive only in time to see the wyrm insinuating itself further and further into the earth. But you have it now; wyrms find the vibrations of the drill impossibly enticing. It'll dance around you like a moth around a flame; and when it comes, you'll be ready.
++[Exhale that breath you've been holding.]
+-> Top
+
+==WyrmRunin
+A rumbling from above! "It's {WYRMDESC} {WYRMNAME}!", the shout comes up. 
+The wyrm has pierced your tunnel; this is the best chance you're going to have to get up close and personal.
+But what will you do with the wyrm when you reach it?
++[Complete your mission: Study the wyrm for science]
+    You've been given a task, and you intend to complete it; even if it seems mundane. 
+    ->WyrmChaseScience
++[Ignore that: Ramming speed!]
+    Killing a wyrm has a glory of its very own. Turn your wyrmdigger to face the beast head-on. 
+    ->WyrmChaseMurder
+
+==WyrmChaseScience
+Hand your notebook to a scribe; it'll be easier if you can dedicate all your focus to {WYRMDESC} {WYRMNAME}.
++[Note down what you're seeing]
+Head-on accounts of wyrms like this are rare. You manage to bark out half a description of {its peristaltic gyrations|its birdlike maw|its crennelated sides|its vicious tentrils}, but it sweeps upon you with terrible speed!
++Enough![] 
+You've gathered all you can; it's time to flee, before there's nothing left of you.
+->LoserEnding
+
+==WyrmChaseMurder
+Charge!
+->MurderEnding
+
+==ScienceEnding
+well you died but you get to see the inside of the wyrm its a rare honour7
+-> END
+
+==MurderEnding
+You killed it! also it killed you
+->END
+
+==LoserEnding
+lol loser
