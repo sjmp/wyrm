@@ -291,6 +291,7 @@ The drill pierces the thick levee of soil the wyrm disturbed. But too slow, too 
 -> Top
 
 ==WyrmRunin
+{set (SEENWORM,1)}
 A rumbling from above! "It's {WYRMDESC} {WYRMNAME}!", the shout comes up. 
 The wyrm has pierced your tunnel; this is the best chance you're going to have to get up close and personal.
 But what will you do with the wyrm when you reach it?
@@ -304,23 +305,36 @@ But what will you do with the wyrm when you reach it?
 ==WyrmChaseScience
 Hand your notebook to a scribe; it'll be easier if you can dedicate all your focus to {WYRMDESC} {WYRMNAME}.
 +[Note down what you're seeing]
-Head-on accounts of wyrms like this are rare. You manage to bark out half a description of {its peristaltic gyrations|its birdlike maw|its crennelated sides|its vicious tentrils}, but it sweeps upon you with terrible speed!
+Head-on accounts of wyrms like this are rare. You manage to bark out half a description of {~its peristaltic gyrations|its birdlike maw|its crennelated sides|its vicious tentrils}, but it sweeps upon you with terrible speed! 
+This is the best view of a wyrm you're ever going to get!
+->ScienceEnding
 +Enough![] 
-You've gathered all you can; it's time to flee, before there's nothing left of you.
+The wyrm is right there! It's time to flee, before there's nothing left of you.
 ->LoserEnding
 
 ==WyrmChaseMurder
-Charge!
+Charge! Your drill takes time to align, but the wyrm's still some distance away. You ready a battlecry: "{Down with wyrms!|Death to {WYRMNAME}|For science!|For Athens!|For {PLAYERNAME}!|For {greekname()}!}". It's not very good, but you're only a scientist.
+The wyrm's great maw descends upon you, and everything turns black.
 ->MurderEnding
+Enough![]
+Face a Wyrm in single combat? You? You're a scientist, not a warrior!
+->LoserEnding
 
 ==ScienceEnding
-well you died but you get to see the inside of the wyrm its a rare honour7
+The inside of a Wyrm! Nobody has ever been inside a wyrm and survived before!
+This is, as it turns out, for good reason. Your drill is crushed and crumpled to nothing by the wyrm's great digestion. On the bright side, if anyone ever manages to find your mangled wyrmdigger, they'll find the most comprehensive account of a wyrm's bowels on or under the earth.
 -> END
 
 ==MurderEnding
-You killed it! also it killed you
+Cackling maniacally, your driller rockets towards the {WYRMDESC} {WYRMNAME}, powered by Alexandria's finest engines. Few wyrmchasers have ever fought a wyrm and survived; for good reason, as it turns out. The inside of a wyrm is terribly hostile towards anything that isn't a wyrm, and your wyrmdriller certainly wasn't built for it. A swarm of tiny parasitic {wormspecies()}'s lunge for your driller, burrowing into every crack and crevice of your ship. You hear {crewType()} {greekname()} scream; then you, too, are beset by wyrms.
+Somehow, your foolish endeavour actually ended well. Your driller managed to stumble forward and pierce the wyrm's tiny brain, ending its life instantly. Some day, someone may find the husk of the wyrm; and your drill, crewed by skeletons.
 ->END
 
 ==LoserEnding
-lol loser
--> END
+Your nerve doesn't hold; you flee from the wyrm before it falls upon you with all its slithering might. 
+The surface is far, far, far away, and your crew is scattered or dazed or half-dead. Eventually, your drill shudders to a halt; the sane and stable among you, few though you are, manage to crawl through a tunnel into a fungal cavern. You live out the rest of your days there, and never see the sun again. It's not a good life, and you wonder what you might have gained, if you had managed to steel yourself just a moment longer.
+->END
+
+==HullEnding
+Your drill comes apart! Your hull falls to pieces! Your engine, tired with mistreatment, explodes! The long and short of it is that you are dead.
+->END
