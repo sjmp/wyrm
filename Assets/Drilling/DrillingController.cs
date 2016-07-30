@@ -23,7 +23,6 @@ namespace Assets.Drilling
             //Setup
             InkStory = new Story(InkAsset.text);
             InkStory.Continue();
-
             NewBox();
         }
 
@@ -53,21 +52,23 @@ namespace Assets.Drilling
         {
             if (InkStory.canContinue)
             {
-                InkStory.Continue();
-                NewBody();
+                InkStory.Continue();    
+            }
 
-                foreach (var choice in InkStory.currentChoices)
+            NewBody();
+
+            if (InkStory.currentChoices.All(x => x.text != "DRILL"))
+            {
+                foreach (var choice in InkStory.currentChoices.Distinct())
                 {
                     var i = choice.index;
                     var go = NewButton(choice.text);
                     go.GetComponentInChildren<Button>().onClick.AddListener(delegate { Select(i, go); });
                     Buttons.Add(go);
                 }
-
             }
             else
             {
-                NewBody();
                 var go = NewButton("DRILL...");
                 go.GetComponentInChildren<Button>().onClick.AddListener(DeleteBox);
             }
@@ -96,6 +97,12 @@ namespace Assets.Drilling
         public void DeleteBox()
         {
             Destroy(CurrentBox);
+            if (InkStory.currentChoices[0].text == "DRILL")
+            {
+                InkStory.ChooseChoiceIndex(0);
+                InkStory.Continue();
+            }
+
             NewBox();
         }
 
