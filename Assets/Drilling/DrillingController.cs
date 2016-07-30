@@ -16,10 +16,12 @@ namespace Assets.Drilling
         public List<GameObject> Buttons;
         public Image BackgroundImage;
         public GameObject CurrentBox;
+        public Image Driller;
 
         // Use this for initialization
         void Start ()
         {
+
             //Setup
             InkStory = new Story(InkAsset.text);
             InkStory.Continue();
@@ -34,12 +36,23 @@ namespace Assets.Drilling
 
             if (InkStory.currentText == "")
             {
-                NewBox();
+                InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
+                InkStory.Continue();
             }
 
             //Setup the box
             CurrentBox = CreateBox();
-            TitleText.text = InkStory.currentText;
+
+            if (InkStory.currentText.Length > 10)
+            {
+                string[] tokens = InkStory.currentText.Split(' ');
+                string retVal = tokens[0] + " " + tokens[1];
+                TitleText.text = retVal + "...";
+            }
+            else
+            {
+                TitleText.text = InkStory.currentText;
+            }
             AddBlock();
         }
 
@@ -132,8 +145,9 @@ namespace Assets.Drilling
         }
 	
         // Update is called once per frame
-        void Update () {
-	
+        void Update ()
+        {
+            
         }
     }
 }
