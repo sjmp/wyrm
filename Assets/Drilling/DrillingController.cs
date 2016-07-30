@@ -16,7 +16,8 @@ namespace Assets.Drilling
         public List<GameObject> Buttons;
         public Image BackgroundImage;
         public GameObject CurrentBox;
-        public Image Driller;
+        public Image Wyrm;
+        public bool UnleashTheWyrm = false;
 
         // Use this for initialization
         void Start ()
@@ -45,9 +46,17 @@ namespace Assets.Drilling
 
             if (InkStory.currentText.Length > 10)
             {
-                string[] tokens = InkStory.currentText.Split(' ');
-                string retVal = tokens[0] + " " + tokens[1];
-                TitleText.text = retVal + "...";
+                try
+                {
+                    string[] tokens = InkStory.currentText.Split(' ');
+                    string retVal = tokens[0] + " " + tokens[1];
+                    TitleText.text = retVal + "...";
+                }
+                catch
+                {
+                    TitleText.text = "PARSE ERROR";
+                }
+
             }
             else
             {
@@ -143,11 +152,16 @@ namespace Assets.Drilling
         {
             return Random.Range(0, max);
         }
+
+            
 	
         // Update is called once per frame
         void Update ()
         {
-            
+            if (UnleashTheWyrm && Wyrm.gameObject.transform.position.y < 690f)
+            {
+                Wyrm.gameObject.transform.Translate(0,1,0);
+            } 
         }
     }
 }

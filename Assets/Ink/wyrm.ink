@@ -79,7 +79,7 @@ Your target is the {~fearsome|great|mighty|worrisome|dread|nightmare-inducing|cr
 - + -> Top
 
 === Mutiny ===
-Your crew are tired of being cooped up in this metal coffin. They say; "{~We miss the sun!|We miss the sky!|I miss my family!|I miss fresh cheese!|Wewant to go home!|We want to see my family again!|I'm sick of dealing with you!|We can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms that much!|We're all going to die!}". A mutiny is brewing.
+Your crew are tired of being cooped up in this metal coffin. "{~We miss the sun!|We miss the sky!|I miss my family!|I miss fresh cheese!|We want to go home!|We want to see my family again!|I'm sick of dealing with you!|We can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms that much!|We're all going to die!}" they shout. A mutiny is brewing.
 +{not Rebellion}Try to talk them around{|| again}. -> Diplomacy
 +{not Diplomacy}Inspire loyalty through force{|| again}. -> Rebellion
 
@@ -102,8 +102,7 @@ Brutal, short and to the point; violence is the answer to many questions.
 *{Mutiny>0}[Make a show of force.]
     You execute a crewman right there and then! Their loyalty is reinvigorated, for now... 
     ~change(CREW,-1)
-*{Mutiny>1}If it's war they want...
-    <> then it's a war they'll get. You gather the loyal crew and fight a bitter battle to the end. 
+*{Mutiny>1}If it's war they want... Then it's a war they'll get. You gather the loyal crew and fight a bitter battle to the end. 
     ~change(CREW,-3)
 *{Mutiny>2}[A last stand]
     Holing up in the captain's office, you fight and fight and fight. In the end, you're left terribly wounded; you'll never survive another battle like this. 
@@ -324,3 +323,4 @@ You killed it! also it killed you
 
 ==LoserEnding
 lol loser
+-> END
