@@ -6,6 +6,8 @@ VAR SPEED = 2 // effected by drill power and depth
 VAR HP = 100 // hull strength
 VAR HEAT = 0 // danger counter
 VAR SUPPLIES = 20 //generic fuel + food
+VAR DIAMONDS = 0
+VAR WYRMFLESH = 0
 
 // {wormspecies()}
 // {drill()}
@@ -88,17 +90,17 @@ Your drill churns ever onward, through miles of dirt and stone. You have a quiet
 
 +[Encourage the stokers]
     They tell you that they could increase the speed, but it'll ding the hull.
-        ++[Make it so!]
+        + +[Make it so!]
         {change(HP,-10)}
         {change (SPEED,1)}
         They dutifully start shoveling fuel. 
-        ++Nah, never mind
-        -- + [DRILL] ->Top
+        + + Nah, never mind
+        - - + + [DRILL] ->Top
 
 +[Gaze out the window]
 {Dirt, rocks, dark.|Still dirt, rocks and dark.|Occasionally, dark rocks and dirt.|Sometimes there's even dirt.|No wyrms here.|Nothing to see here.|Wait, were those tracks? ->tracks|Looking out the window is always wildly exciting.|Nothing better than some window-looking.|Nice.}
+- + [DRILL] ->Top
 
-    - + [DRILL] ->Top
 
 == Drill_2 ==
 Your drill is a great corkscrew sheathed in steel, spiraling ever downwards. Every now and then, it digs up trouble; but not today.
@@ -113,7 +115,7 @@ The efforts of Athens' finest minds have gotten you this far, but even they must
 ->Drill_1.lazytime
 
 ==Concerns==
-{greekname()} is worried about something: "{It's not my birthday yet.|I don't like weird noises|I wish you'd stop slacking off||I don't want to be stuck here.|Will we ever find the wyrm?|What do we even do when we find the wyrm?|What does a wyrm even look like?|Why are we doing this?}"
+{greekname()} is worried about something: "{~It's not my birthday yet.|I don't like weird noises|I wish you'd stop slacking off||I don't want to be stuck here.|Will we ever find the wyrm?|What do we even do when we find the wyrm?|What does a wyrm even look like?|Why are we doing this?}"
 +[Reassure them]
 All shall be well, and maybe all manner of thing too. {They're reassured, for now {change (MORALE,2)}|They aren't buying it {change (MORALE,-2)}}.
 +[Yell at them]
@@ -162,13 +164,13 @@ The crew are a bit nervous {change (MORALE,-2)}
 - + [DRILL] ->Top
 
 ==tremor==
-
+The world shakes! {~A passing wyrm?|An angry god?|Engine failure?|Too much wine?} Whatever the case, your wyrmdigger isn't in good shape. {change (HP,-10)}
 - + [DRILL] ->Top
 
 ==lost_trail==
 You've lost sight of the wyrmtrack somewhere in all the dirt and darkness.
 +[Redirect course]
-{Maybe it'll help, maybe not. {{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}|You can see something, just about ->tracks}
+{Maybe it'll help, maybe not. {{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}|You can see something, just about. ->tracks}
 +[Soldier on]
 If you keep going down, you'll find it eventually. {{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}
 
@@ -184,6 +186,35 @@ Not worth the risk.{{change (SPEED,1)}|{change (SPEED,-1)}|{change (DEPTH,5)}|{c
 - + [DRILL] ->Top
 
 ==sweltering==
-The heat is getting to your crew.
+The heat is getting to your crew. {change (MORALE,-3)}
 
 - + [DRILL] ->Top
+
+==Diamonds==
+A vein of shiny diamonds. {greekname()} greedily eyes them up in the lamplight.
++[Collect them]
+Your crew is happy! But now you're slower. {change (MORALE,5)} {change (DIAMONDS,1)}
++[Go past them]
+The crew is sad but you make progress. {change (MORALE,-5)} {change (DEPTH,10)}
+- + [DRILL] -> Top
+
+==Wyrmcast==
+The wyrm has passed through here, shedding its skin as it passed. A slimy, sinuous cast of wyrmflesh lies in the way of your drill.
++[Use the beak-shards to sharpen the drill]
+    The wyrm once used this beak to cut through the earth; now you'll do it in its stead. {change (SPEED, 2)}
++[Use the moult to harden the hull]
+    Its segmented flesh is harder than boiled leather, perfectly adapted to the stresses of the deep earth. {change (HP, 25)}
++[Gather its innards for supplies.]
+    They pay well for this meat in Athens; your crew should consider themselves fortunate. {change (SUPPLIES, 10)} {change (WYRMFLESH, 2)}
+- + [DRILL] -> Top
+
+==Shroom==
+A small cavern with flourishing mushroom-life.
++[Use the stems to patch up your hull]
+Not the most solid material on or under the earth, but it'll hold things together for a while {change (HP, 10)}
++[Take the caps for supplies]
+Mushroom-flesh is woody and unappetising, but it provides enough sustenance for now. {change (SUPPLIES, 5)}
+
+==Encampment==
+Some explorers have set up shop here; they have tools and supplies you could use.
++[
