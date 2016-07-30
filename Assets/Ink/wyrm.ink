@@ -8,14 +8,21 @@ VAR HEAT = 0 // danger counter
 VAR SUPPLIES = 0 //generic fuel + food
 
 + Mutiny -> Mutiny
-* Birthday -> Birthday
-
++ Birthday -> Birthday
++ Drill -> Drill_1
++ Other Drill -> Drill_2
 
 ==function change(ref x, y)==
 ~x = x + y
 
 ==function set(ref x, y)==
 ~ x = y
+
+==function drill==
+~DEPTH=1+SPEED
+~SUPPLIES= SUPPLIES-1
+~HEAT=1+(SPEED * 0.5)
+
 
 
 
@@ -26,21 +33,21 @@ Your crew are tired of being cooped up in this metal coffin. They say;{random st
 
 =Diplomacy
 *{Mutiny>0}[Engage them in debate.] 
-    If we turn back now, what was the point of all this? ~change(heat,2)
+    If we turn back now, what was the point of all this? {~change(HEAT,2)}
 *{Mutiny>1}[Put it to a vote]
-    The vote runs close; in the end, your vote breaks the tie. ~change(heat,3)
+    The vote runs close; in the end, your vote breaks the tie. {~change(HEAT,3)}
 *{Mutiny>2}[Struggle, one last time, to persuade them.]
-    They warn you; they won't listen again. ~change(heat,4)
+    They warn you; they won't listen again. {~change(HEAT,4)}
 *[] No matter how hard you try, it's impossible to put forward a reasonable argument. You are swiftly deposed, and your crew start the long journey back to the surface.
 - ->Top
 
 =Rebellion
 *{Mutiny>0}[Make a show of force.]
-You execute a crewman right there and then! Their loyalty is reinvigorated, for now... ~change(crew,-1)
+You execute a crewman right there and then! Their loyalty is reinvigorated, for now... {~change(CREW,-1)}
 *{Mutiny>1}If it's war they want...
-<> then it's a war they'll get. You gather the loyal crew and fight a bitter battle to the end. ~change(crew,-3)
+<> then it's a war they'll get. You gather the loyal crew and fight a bitter battle to the end. {~change(CREW,-3)}
 *{Mutiny>2}[A last stand]
-    Holing up in the captain's office, you fight and fight and fight. In the end, you're left terribly wounded; you'll never survive another battle like this. ~xchange(crew,-3)
+    Holing up in the captain's office, you fight and fight and fight. In the end, you're left terribly wounded; you'll never survive another battle like this. {~change(CREW,-3)}
 *[] It's no good; your crew's loyalty is frayed, and you won't last a second in a fight. Give up, return to the surface. -> END
 - ->Top
 
@@ -50,45 +57,35 @@ You execute a crewman right there and then! Their loyalty is reinvigorated, for 
 
 
 == Drill_1 ==
-Your drill churns ever onward, through miles of dirt and stone. You have a quiet evening to yourself.
-
+Your drill churns ever onward, through miles of dirt and stone. You have a quiet evening to yourself. 
+->lazytime
+=lazytime
 +[Enjoy the interlude]
+    relax, take it easy
 
 +[Encourage the stokers]
+    They tell you that they could increase the speed, but it'll ding the hull
+        ++[Make it so!]
+        They dutifully start shoveling fuel. {~change(SPEED,1) ~change HP(HP,-10) ~drill}
+        ++Nah, never mind
+        -- ->Top
 
 +[Gaze out the window]
+Dirt, rocks, dark
 
 - ->Top
 
 == Drill_2 ==
 Your drill is a great corkscrew sheathed in steel, spiraling ever downwards. Every now and then, it digs up trouble; but not today.
-+[Enjoy the interlude]
-
-+[Encourage the stokers]
-
-+[Gaze out the window]
-
-- ->Top
+->Drill_1.lazytime
 
 == Drill_3 ==
-On the surface, they think the only thing to be found down here is horror and death. Not so; occasionally, you find boredom.
-+[Enjoy the interlude]
-
-+[Try and get moving faster]
-
-+[]
-
-- ->Top
+On the surface, they think the only thing to be found this deep is horror and death. Not so; occasionally, you find boredom.
+->Drill_1.lazytime
 
 == Drill_4 ==
-The efforts of Athens' finest minds have gotten you this far, but even they find themselves at a loose end sometimes.
-+[Relax while you can]
-
-+[Visit the engine room]
-
-+[look outside]
-
-- ->Top
+The efforts of Athens' finest minds have gotten you this far, but even they must find themselves at a loose end sometimes.
+->Drill_1.lazytime
 
 ==Concerns==
 One of your crew has a (randomly selected) concern of some kind.
