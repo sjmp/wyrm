@@ -34,6 +34,7 @@ VAR SEENINTRO = 0
 + gasdanger -> gasdanger
 + Diamonds -> Diamonds
 + Shroom -> Shroom
++ Encampment -> Encampment
 
 
 
@@ -243,6 +244,15 @@ A small cavern with flourishing mushroom-life.
 Not the most solid material on or under the earth, but it'll hold things together for a while {change (HP, 10)}
 +[Take the caps for supplies]
 Mushroom-flesh is woody and unappetising, but it provides enough sustenance for now. {change (SUPPLIES, 5)}
+- + [DRILL] -> Top
 
 ==Encampment==
 Some explorers have set up shop here; they have tools and supplies you could use.
++[Barter for supplies]
+You offer them {~some surface-trinkets|a few poems|some manuscripts} for food. They only have old cans and some unappetising mushrooms, but it'll keep you going. {change (SUPPLIES, 3)}
++[Barter for repairs]
+You swap {~some surface-trinkets|a few poems|some manuscripts} for materials. {change (HP,10)}
++{DIAMONDS>0} [Offer them diamonds]
+    They shower you with gifts! Most of them aren't terribly useful, but you manage to gather some supplies and material for the hull. Getting rid of the diamonds lightened your load, too.
+    {change (SUPPLIES,8)} {change (HP,20)} {change (DIAMONDS,-1)} {change (SPEED,1)}
+    - + [DRILL] -> Top
