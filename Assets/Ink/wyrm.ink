@@ -8,6 +8,7 @@ VAR HEAT = 0 // danger counter
 VAR SUPPLIES = 20 //generic fuel + food
 VAR DIAMONDS = 0
 VAR WYRMFLESH = 0
+VAR PROXIMTY = 0 //100 = You're on it
 
 // {wormspecies()}
 // {drill()}
@@ -37,6 +38,9 @@ VAR WYRMFLESH = 0
 
 ==function wormspecies()==
 ~ return "{~Platyhelm|Cest|Acoelo|Nema|Tetra|Helm|Bilatere|Tentaculario|Diphyll|Mono|Turbella}{~inth|mate|ode|gene|ide|annelid|bothride|ozoa|aria}"
+
+==function crewType()==
+~ return "{~First Anthyposminagos|Spearman|Philosopher-Officer|Deck Hand|Second Navarchos|Stoker|Alchemist}"
 
 === Mutiny ===
 Your crew are tired of being cooped up in this metal coffin. They say; "{~We miss the sun!|I miss the sky!|I miss my family!|I miss fresh cheese!|I want to go home!|I want to see my family again!|I'm sick of dealing with you!|I can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms!|We're all going to die!}". A mutiny is brewing.
@@ -115,14 +119,18 @@ The efforts of Athens' finest minds have gotten you this far, but even they must
 ->Drill_1.lazytime
 
 ==Concerns==
-{greekname()} is worried about something: "{~It's not my birthday yet.|I don't like weird noises|I wish you'd stop slacking off||I don't want to be stuck here.|Will we ever find the wyrm?|What do we even do when we find the wyrm?|What does a wyrm even look like?|Why are we doing this?}"
+~temp CREWTYPE = crewType()
+//{~OFFICER|SOLDIER|SCIENTIST|CREW|NAVIGATOR|OTHER|ENGINEER}
+
+{CREWTYPE} {greekname()} comes to your office {~slouching against a wall|wringing their hands|far too early for this sort of thing}; "{I can't sleep, see, with all the noise, so I've been thinking...|Cap, us and the boys have been talking|I've had a word with the {crewType()}, see...}" they say "{-HEAT > 10:Reckon the hull can't take much more of this heat. We need to find a way to cool it, and fast.|What are we going to do when we find this wyrm?}"
 +[Reassure them]
-All shall be well, and maybe all manner of thing too. {They're reassured, for now {change (MORALE,2)}|They aren't buying it {change (MORALE,-2)}}.
+"All shall be well, and maybe all manner of thing too!" {With that, they're reassured. For now. {change (MORALE,2)}|... But they aren't buying it. {change (MORALE,-2)}}
 +[Yell at them]
-What's their problem? You're the captain here, and you're doing fine; that's what matters. {Somehow, it works. {change (MORALE,4)}|They obviously aren't happy after that. {change (MORALE,-4)}}
+Must you do everything on this damn digger!? You're the captain here, and you're doing fine; that's what matters. {~Somehow, it works. The {CREWTYPE} slinks away. {change (MORALE,4)}|All nods and humble mutterings, but the {CREWTYPE} isn't one to forget this kind of thing. {change (MORALE,-4)}}
 +[Ignore them]
-Not your problem. {They soon calm down {change (MORALE,1)}|They remain quite worried {change (MORALE,-1)}}
+Not your problem. {There's an Officer for this kind of thing; usually is, anyway.{change (MORALE,1)}|The worry stays etched on their face as they rush back out.{change (MORALE,-1)}}
 - + [DRILL] ->Top
+
 
 ==Dozing_off==
 The constant whir of the drill feels almost restful. Nobody will mind if you just lie here for a moment...
@@ -215,6 +223,3 @@ Not the most solid material on or under the earth, but it'll hold things togethe
 +[Take the caps for supplies]
 Mushroom-flesh is woody and unappetising, but it provides enough sustenance for now. {change (SUPPLIES, 5)}
 
-==Encampment==
-Some explorers have set up shop here; they have tools and supplies you could use.
-+[
