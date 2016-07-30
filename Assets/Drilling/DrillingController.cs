@@ -31,6 +31,14 @@ namespace Assets.Drilling
 
         public void NewBox()
         {
+            //Check for WYRM!!!
+            var worm = InkStory.variablesState["SEENWORM"];
+            if (worm.Equals(1))
+            {
+                Debug.Log("FIRE");
+                UnleashTheWyrm = true;
+            }
+
             //Choose and enter a random story
             InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
             InkStory.Continue();

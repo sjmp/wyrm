@@ -1,3 +1,10 @@
+===Introduction===
+~ PLAYERNAME = greekname()
+~ WYRMNAME = wormspecies()
+~ WYRMDESC = wormdescription()
+You are Metic {PLAYERNAME}. You've been appointed captain of a scientific journey into the depths of the Earth; your mission, to find and study a Wyrm. Wyrms are dreadful beasts that thrive in the deep dark soil under the earth; you and your crew are prepared to do whatever it takes. Your reward; {~the endless gratitude of the philosopher-kings of Athens.|eternal fame and fortune.|the regard of high society.|a name in the legends.|your own personal seaside villa.|a mausoleum in the Field of the Wyrmchasers} Your target is the {~fearsome|great|mighty|worrisome|dread|nightmare-inducing|creepy|oft-theorised, never found|legendary|mythic|sonnet-spoken|epic-inspiring|overhyped} {WYRMDESC} {WYRMNAME}. The deeper you dig, the more difficult things will get; but the closer you'll come to finding the wyrm.{set (SEENINTRO,1)}
+- + [DRILL] -> Top
+
 === Top ===
 VAR CREW = 10 // straightforward
 VAR MORALE = 100 // straightforward
@@ -20,7 +27,6 @@ VAR WYRMCORPSE = 0
 // {wormspecies()}
 // {drill()}
 // {DEPTH}
-+ Intro -> Introduction
 + Mutiny -> Mutiny
 + There! There! -> WyrmGlimpse
 + The Wyrm -> WyrmRunin
@@ -69,14 +75,8 @@ VAR WYRMCORPSE = 0
 
 ==function wormdescription()==
  ~return "{~Red|White|Black|Orange|Bronze|Gold|Blue|Fanged|Slime|Parasitic|Dark|Bloody|Wyrm|Helm of the|}"
-==Introduction==
-~ PLAYERNAME = greekname()
-~ WYRMNAME = wormspecies()
-~ WYRMDESC = wormdescription()
-You are Metic {PLAYERNAME}. You've been appointed captain of a scientific journey into the depths of the Earth; your mission, to find and study a Wyrm. Wyrms are dreadful beasts that thrive in the deep dark soil under the earth; you and your crew are prepared to do whatever it takes. Your reward; {~the endless gratitude of the philosopher-kings of Athens.|eternal fame and fortune.|the regard of high society.|a name in the legends.|your own personal seaside villa.|a mausoleum in the Field of the Wyrmchasers}
-Your target is the {~fearsome|great|mighty|worrisome|dread|nightmare-inducing|creepy|oft-theorised, never found|legendary|mythic|sonnet-spoken|epic-inspiring|overhyped} {WYRMDESC} {WYRMNAME}. The deeper you dig, the more difficult things will get; but the closer you'll come to finding the wyrm.
-{set (SEENINTRO,1)}
-- + [DRILL] -> Top
+ 
+
 
 === Mutiny ===
 Your crew are tired of being cooped up in this metal coffin. "{~We miss the sun!|We miss the sky!|I miss my family!|I miss fresh cheese!|We want to go home!|We want to see my family again!|I'm sick of dealing with you!|We can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms that much!|We're all going to die!}" they shout. A mutiny is brewing.
@@ -292,9 +292,7 @@ The drill pierces the thick levee of soil the wyrm disturbed. But too slow, too 
 
 ==WyrmRunin
 {set (SEENWORM,1)}
-A rumbling from above! "It's {WYRMDESC} {WYRMNAME}!", the shout comes up. 
-The wyrm has pierced your tunnel; this is the best chance you're going to have to get up close and personal.
-But what will you do with the wyrm when you reach it?
+A rumbling from above! "It's {WYRMDESC} {WYRMNAME}!", the shout comes up. The wyrm has pierced your tunnel; this is the best chance you're going to have to get up close and personal. But what will you do with the wyrm when you reach it?
 +[Complete your mission: Study the wyrm for science]
     You've been given a task, and you intend to complete it; even if it seems mundane. 
     ->WyrmChaseScience
