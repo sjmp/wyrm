@@ -8,16 +8,33 @@ VAR HEAT = 0 // danger counter
 VAR SUPPLIES = 20 //generic fuel + food
 VAR DIAMONDS = 0
 VAR WYRMFLESH = 0
+VAR PLAYERNAME = ""
+VAR WYRMNAME = ""
+VAR WYRMDESC = ""
+VAR SEENINTRO = 0
 
 // {wormspecies()}
 // {drill()}
 // {DEPTH}
++ Intro -> Introduction
 + Mutiny -> Mutiny
 + Birthday -> Birthday
 + Drill -> Drill_1
 + Other Drill -> Drill_2
 + Dozing -> Dozing_off
 + Concerns -> Concerns
++ Other Other Drill -> Drill_3
++ Other Other Other Drill -> Drill_4
++ Rations -> Ration_trouble
++ tracks -> tracks
++ noises -> weird_creaking
++ tremor -> tremor
++ Wyrmcast -> Wyrmcast
++ lost_trail -> lost_trail
++ gasdanger -> gasdanger
++ Diamonds -> Diamonds
++ Shroom -> Shroom
+
 
 
 
@@ -30,7 +47,8 @@ VAR WYRMFLESH = 0
 ==function drill()==
 ~DEPTH=1+DEPTH+SPEED
 ~SUPPLIES= SUPPLIES-1
-~HEAT=1+(SPEED * 0.5)
+~HEAT=1+(SPEED * 0.5) + HEAT
+~HP = HP - (HEAT * 0.5)
 
 ==function greekname()==
 ~return "{~Percalus|Euphro|Phylace|Limnoreia|Megaera|Glyke|Ione|Medea|Scylla|Amatheia|Hermione|Ctimene|Milo|Astyocheia|Hecuba|Callianessa|Hermine|Megara|Dirce|Artemidora|Plutarch|Theophanes|Thyrsos|Pittacus|Copreus|Panaetius|Epimenes|Hermeros|Pigres|Apollodoros|Phineus|Agamedes|Oliatos|Peteos|Phaestus|Apisaon|Demonax|Dardanus|Aristogeiton|Asopodoros}"
@@ -38,8 +56,19 @@ VAR WYRMFLESH = 0
 ==function wormspecies()==
 ~ return "{~Platyhelm|Cest|Acoelo|Nema|Tetra|Helm|Bilatere|Tentaculario|Diphyll|Mono|Turbella}{~inth|mate|ode|gene|ide|annelid|bothride|ozoa|aria}"
 
+==function wormdescription()==
+ ~return "{~Red|White|Black|Orange|Bronze|Gold|Blue|Fanged|Slime|Parasitic|Dark|Bloody|Wyrm|Helm of the|}"
+==Introduction==
+~ PLAYERNAME = greekname()
+~ WYRMNAME = wormspecies()
+~ WYRMDESC = wormdescription()
+You are Metic {PLAYERNAME}. You've been appointed captain of a scientific journey into the depths of the Earth; your mission, to find and study a Wyrm. Wyrms are dreadful beasts that thrive in the deep dark soil under the earth; you and your crew are prepared to do whatever it takes. Your reward; {~the endless gratitude of the philosopher-kings of Athens.|eternal fame and fortune.|the regard of high society.|a name in the legends.|your own personal seaside villa.|a mausoleum in the Field of the Wyrmchasers}
+Your target is the {~fearsome|great|mighty|worrisome|dread|nightmare-inducing|creepy|oft-theorised, never found|legendary|mythic|sonnet-spoken|epic-inspiring|overhyped} {WYRMDESC} {WYRMNAME}. The deeper you dig, the more difficult things will get; but the closer you'll come to finding the wyrm.
+{set (SEENINTRO,1)}
+- + -> Top
+
 === Mutiny ===
-Your crew are tired of being cooped up in this metal coffin. They say; "{~We miss the sun!|I miss the sky!|I miss my family!|I miss fresh cheese!|I want to go home!|I want to see my family again!|I'm sick of dealing with you!|I can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms!|We're all going to die!}". A mutiny is brewing.
+Your crew are tired of being cooped up in this metal coffin. They say; "{~We miss the sun!|We miss the sky!|I miss my family!|I miss fresh cheese!|Wewant to go home!|We want to see my family again!|I'm sick of dealing with you!|We can't abide any more drilling!|The heat! The heat!!|I'm hungry!|I don't even like wyrms that much!|We're all going to die!}". A mutiny is brewing.
 +{not Rebellion}Try to talk them around{|| again}. -> Diplomacy
 +{not Diplomacy}Inspire loyalty through force{|| again}. -> Rebellion
 
@@ -217,4 +246,3 @@ Mushroom-flesh is woody and unappetising, but it provides enough sustenance for 
 
 ==Encampment==
 Some explorers have set up shop here; they have tools and supplies you could use.
-+[
