@@ -16,14 +16,15 @@ namespace Assets.Drilling
         public List<GameObject> Buttons;
         public Image BackgroundImage;
         public GameObject CurrentBox;
+        public Image Driller;
 
         // Use this for initialization
         void Start ()
         {
+
             //Setup
             InkStory = new Story(InkAsset.text);
             InkStory.Continue();
-
             NewBox();
         }
 
@@ -33,9 +34,25 @@ namespace Assets.Drilling
             InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
             InkStory.Continue();
 
+            if (InkStory.currentText == "")
+            {
+                InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
+                InkStory.Continue();
+            }
+
             //Setup the box
             CurrentBox = CreateBox();
-            TitleText.text = InkStory.currentText;
+
+            if (InkStory.currentText.Length > 10)
+            {
+                string[] tokens = InkStory.currentText.Split(' ');
+                string retVal = tokens[0] + " " + tokens[1];
+                TitleText.text = retVal + "...";
+            }
+            else
+            {
+                TitleText.text = InkStory.currentText;
+            }
             AddBlock();
         }
 
@@ -53,9 +70,13 @@ namespace Assets.Drilling
         {
             if (InkStory.canContinue)
             {
-                InkStory.Continue();
-                NewBody();
+                InkStory.Continue();    
+            }
 
+            NewBody();
+
+            if (InkStory.currentChoices.All(x => x.text != "DRILL") || InkStory.currentChoices.Count == 0)
+            {
                 foreach (var choice in InkStory.currentChoices)
                 {
                     var i = choice.index;
@@ -63,11 +84,9 @@ namespace Assets.Drilling
                     go.GetComponentInChildren<Button>().onClick.AddListener(delegate { Select(i, go); });
                     Buttons.Add(go);
                 }
-
             }
             else
             {
-                NewBody();
                 var go = NewButton("DRILL...");
                 go.GetComponentInChildren<Button>().onClick.AddListener(DeleteBox);
             }
@@ -96,6 +115,12 @@ namespace Assets.Drilling
         public void DeleteBox()
         {
             Destroy(CurrentBox);
+            if (InkStory.currentChoices[0].text == "DRILL")
+            {
+                InkStory.ChooseChoiceIndex(0);
+                InkStory.Continue();
+            }
+
             NewBox();
         }
 
@@ -120,8 +145,9 @@ namespace Assets.Drilling
         }
 	
         // Update is called once per frame
-        void Update () {
-	
+        void Update ()
+        {
+            
         }
     }
 }
