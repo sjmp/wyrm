@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ink;
 using Ink.Runtime;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Drilling
 {
@@ -170,6 +171,11 @@ namespace Assets.Drilling
         public int RandomTo(int max)
         {
             return Random.Range(0, max);
+        }
+
+        public void Pause()
+        {
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Additive);
         }
 
             

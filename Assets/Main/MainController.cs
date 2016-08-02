@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
-
+    public static bool GameRunning;
     public Image Background;
+    public Button StartButton;
 
     // Use this for initialization
-    void Start () {
-
-        if (SceneManager.sceneCount != 1)
+    void Start ()
+    {
+        if (GameRunning)
         {
             GameObject go = (GameObject)Instantiate(Resources.Load("ResumeButton"));
             go.transform.SetParent(Background.gameObject.transform, false);
+            go.GetComponentInChildren<Button>().onClick.AddListener(ReturnToGame);
+            StartButton.GetComponentInChildren<Text>().text = "RESTART";
         }
 	
 	}
@@ -34,14 +37,15 @@ public class MainController : MonoBehaviour
     public void Lore()
     {
         Debug.Log("Lore!");
-        SceneManager.LoadScene("LoreScene");
+        SceneManager.LoadScene("LoreScene", LoadSceneMode.Additive);
     }
 
     public void BeginGame()
     {
+        GameRunning = true;
         Debug.Log("Starting!");
+        SceneManager.UnloadScene("DrillingScene");
         SceneManager.LoadScene("DrillingScene");
-        SceneManager.UnloadScene("MainScene");
     }
 
     public void ReturnToGame()

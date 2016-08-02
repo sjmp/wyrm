@@ -16,7 +16,6 @@ public class LoreController : MonoBehaviour {
 
     public void ExitLore()
     {
-        SceneManager.LoadScene("MainScene");
         SceneManager.UnloadScene("LoreScene");
     }
 }
