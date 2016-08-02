@@ -177,7 +177,7 @@ namespace Assets.Drilling
         // Update is called once per frame
         void Update ()
         {
-            if (UnleashTheWyrm && Wyrm.gameObject.transform.position.y < 690f)
+            if (UnleashTheWyrm)
             {
                 Wyrm.gameObject.transform.Translate(0,1,0);
             } 
