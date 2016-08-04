@@ -39,7 +39,7 @@ namespace Assets.Drilling
             if (!AtStart)
             {
                 //Choose and enter a random story
-                if (Officers == 2)
+                if (Officers == 3)
                 {
                     InkStory.ChooseChoiceIndex(0);
                     InkStory.Continue();
