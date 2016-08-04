@@ -21,10 +21,12 @@ VAR WYRMNAME = ""
 VAR WYRMDESC = ""
 VAR SEENINTRO = 0
 VAR SEENWORM = 0
+VAR TRAIL = 0
 
 // {wormspecies()}
 // {drill()}
 // {DEPTH}
++ Officer -> Officer
 + Mutiny -> Mutiny
 + There! There! -> WyrmGlimpse
 + The Wyrm -> WyrmRunin
@@ -73,6 +75,92 @@ VAR SEENWORM = 0
 
 ==function wormdescription()==
  ~return "{~Red|White|Black|Orange|Bronze|Gold|Blue|Fanged|Slime|Parasitic|Dark|Bloody|Wyrm|Helm of the|}"
+ 
+ 
+=== Officer ===
+The deck is at the very top of the Wyrmdigger, a great conical room of gantries and stations. You consult...
++ The Oread for a Sound Report -> Oread
++ The Quartermaster on the mission progress -> Quartermaster
++ The Pedon on her crew and Digger -> Pedon
++ The Chief Aeolikos, down in the engines -> Aeolikos
+
+//DEPTH & TRAIL
+= Oread
+The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the Cithaeron|what looks like a giant, exploded, golden clock}, eyes closed, {~hands massaging two foot long metal bars|bare feet on a long, curved tube|fingers dancing against a vibrating set of tuning forks|one finger to her lips, another skipping on a spinning sphere}. "Little busy, Metic. Can I help?"
+-> InterviewOread
+
+= InterviewOread
++ (Talent) {InterviewOread.Cithaeron == 3}{InterviewOread.Talent < 2} Can I have a go?
+    {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time." -> InterviewOread}
+    
++ Report!
+    {
+        - DEPTH < 20: "Barely into the Crust. Skimming soil  
+        - DEPTH < 40:  "Full Crust, Metis. On full tilt
+        - DEPTH < 60:  "Upper Lithosphere. Picking up a fair amount
+        - DEPTH < 80: "Lower Lithosphere." Her eyes are clenched tight "Lot of interference down here
+        - else: Her face is gaunt. Etched with sweat. "Mantle. So low. I can't tell what's what
+    }<>{
+        - TRAIL < 20: ." She looks bored. "Cithaeron's got nothing. Rocks. Soil. Ruins. Soil." 
+        - TRAIL < 40: ..." Her ear is against a metal tube. "Something... Maybe volcanic. Unsure."
+        - TRAIL < 60: . I hear it, though. Wyrm-noise. Faint, rythmic, close." She puts up her hand to ward you off.
+        - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
+        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
+    }
+    
+    -> InterviewOread
++ (Cithaeron) {InterviewOread.Cithaeron < 3} Can you explain this machinery?
+    {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "The Bacchae-Thebian Cithaeron Nexus. A system of revibrators that pick up on escaping Nerve Branches where they leave the Arterial Steam Branches. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
+    -> InterviewOread
++ As you where.
+    The Pedon nods and turns away. The metal sings.
+    - + DRILL -> Top
+
+
+
+//DEPTH & TRAIL
+= Quartermaster
+I'm Paul!
+-> InterviewQuartermaster
+
+= InterviewQuartermaster
++ Report!
+    {
+        - DEPTH < 20: "Barely into the Crust. Skimming soil  
+        - DEPTH < 40:  "Full Crust, Metis. On full tilt
+        - DEPTH < 60:  "Upper Lithosphere. Picking up a fair amount
+        - DEPTH < 80: "Lower Lithosphere." Her eyes are clenched tight "Lot of interference down here
+        - else: Her face is gaunt. Etched with sweat. "Mantle. So low. I can't tell what's what
+    }<>{
+        - TRAIL < 20: ." She looks bored. "Cithaeron's got nothing. Rocks. Soil. Ruins. Soil." 
+        - TRAIL < 40: ..." Her ear is against a metal tube. "Something... Maybe volcanic. Unsure."
+        - TRAIL < 60: . I hear it, though. Wyrm-noise. Faint, rythmic, close." She puts up her hand to ward you off.
+        - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
+        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
+    }
+    
+    -> InterviewQuartermaster
++ Other option.
+    -> InterviewOread
++ As you where.
+    The Quartermaster grins, before diving back into a ledger.
+    - + DRILL -> Top
+
+
+
+
+
+//TRAIL & HEAT
+= Aeolikos
+I power the Aeolikos
++ DRILL -> Top
+
+
+//MORALE & DEPTH
+= Pedon
+I look after the crew
++ DRILL -> Top
+
  
 
 
