@@ -21,7 +21,7 @@ VAR SEENWORM = 0
 + Officer -> Officer
 + {CREW < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Mutiny -> Mutiny
 + {TRAIL > 60}{not WyrmGlimpse}{CREW > 0}{HEAT < 99}{DEPTH < 99} There! There! -> WyrmGlimpse
-+ {TRAIL < 99}{CREW > 0}{HEAT < 99}{DEPTH < 99} The Wyrm -> WyrmRunin
++ {TRAIL < 99}{CREW > 0}{HEAT < 99}{DEPTH < 99}{WyrmGlimpse} The Wyrm -> WyrmRunin
 + {DEPTH > 25}{CREW > 0}{HEAT < 99}{DEPTH < 99} A Party! -> Birthday
 + {DEPTH < 25}{CREW > 0}{HEAT < 99}{DEPTH < 99} Ever Deeper -> Drill_1
 + {DEPTH > 25}{DEPTH < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Ever Warmer -> Drill_2
@@ -228,7 +228,7 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
     //     ~change(CREW,20)
     //     -> Report
     // -- + Decrease Depth
-         ~change(CREW,-20)
+    //     ~change(CREW,-20)
     //     -> Report
     // -- + Increase Trail
     //     ~change(TRAIL,20)
@@ -245,7 +245,7 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
     ++ DRILL -> Top
 
 =InterviewQuartermasterBooze
-He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule} {~sloshing|fizzing|flat|bubbling} {~tankard|flask|jar|glass|mug|vessel|bowl|pot}{|||, inscribed with{wyrms|dragons|titans|colossi|earth|a drill|inscriptions|an Aeolipile|a mushroom|bats|horses|Aristotle|triangles|geometry|birds|your face|his face|a beard|a bard|a band|nothing}and full }of something {~green|foul|purple|wine-y|beer-y|translucent|transparent|colourful|suspicious|potent|distracting|tempting|watery|exceptional|wispy|translucent|sunset|murky|rose-gold|dirty|muddy|unappealing|unappetizing|appealing|slimy|dark|bright|}. You take a sip... tastes {~bad: like {~mud|dirt|wyrmslime|grass|oil|metal|hair|earwax|burning|soil|horses|sour grapes|bad apples|straight-up wheat|blood|and yet unlike anything you've ever had before|wet socks|unwelcome news}|decent: like {~cold water|passable beer|a raw egg|orange juice|apple juice|passable cider|passable mead|passable wine|strong coffee|bittersweetness|lambswool|bitterness|straight-up lemon juice}|good: like {~fine wine|fine beer|fine cider|fine mead|water from a mountain-spring|drinking a wolf's tooth|drinking velvet|drinking silver|a shock to the senses}|great: like {~drinking a cloud|listening to a Homeric epic|victory|the gods' own|Ambrosia|the kind of water a princess might drink|drinking silk|gold|drinking the open sky|drinking the deep darkness of space|good news|elemental fire|elemental water|elemental air|elemental earth|the aether}}.
+He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule} {~sloshing|fizzing|flat|bubbling} {~tankard|flask|jar|glass|mug|vessel|bowl|pot}{|||, inscribed with{wyrms|dragons|titans|colossi|earth|a drill|inscriptions|an Aeolipile|a mushroom|bats|horses|Aristotle|triangles|geometry|birds|your face|his face|a beard|a bard|a band|nothing}and full} of something {~green|foul|purple|wine-y|beer-y|translucent|transparent|colourful|suspicious|potent|distracting|tempting|watery|exceptional|wispy|translucent|sunset|murky|rose-gold|dirty|muddy|unappealing|unappetizing|appealing|slimy|dark|bright|}. You take a sip... tastes {~bad: like {~mud|dirt|wyrmslime|grass|oil|metal|hair|earwax|burning|soil|horses|sour grapes|bad apples|straight-up wheat|blood|and yet unlike anything you've ever had before|wet socks|unwelcome news}|decent: like {~cold water|passable beer|a raw egg|orange juice|apple juice|passable cider|passable mead|passable wine|strong coffee|bittersweetness|lambswool|bitterness|straight-up lemon juice}|good: like {~fine wine|fine beer|fine cider|fine mead|water from a mountain-spring|drinking a wolf's tooth|drinking velvet|drinking silver|a shock to the senses}|great: like {~drinking a cloud|listening to a Homeric epic|victory|the gods' own|Ambrosia|the kind of water a princess might drink|drinking silk|gold|drinking the open sky|drinking the deep darkness of space|good news|elemental fire|elemental water|elemental air|elemental earth|the aether}}.
 
 +Another!
 ->InterviewQuartermasterBooze
@@ -327,9 +327,9 @@ Brutal, short and to the point; violence is the answer to many questions.
 ~temp birthdayboy = greekname()
 It's {birthdayboy}'s birthday today! {|It's considered lucky to have two birthdays in one voyage.|Three must be even luckier.|Four birthdays is a bit much.|Five in one trip? What?|Six???|Seven??????????|Eight? This is a bit daft.|The crew are definitely trying to pull something here.}
 +Throw them a party.
-    Hooray! {birthdayboy} is happy{change (CREW,10)}, but {~the next morning, you find that somebody drunkenly nudged you off course. You've spent the past few hours heading away from the worm! {change (TRAIL, -5)}|somebody got a bit too rowdy and damaged some of the hull. {change (HEAT, 5)}|when the hangover hits, they won't be. {change (CREW,-12)}|the wyrm probably isn't.|everybody was too busy partying to check on the drill, and you've dug deeper than you expected {change (DEPTH,10)}}
+    Hooray! {birthdayboy} is happy{change (CREW,5)}, but {~the next morning, you find that somebody drunkenly nudged you off course. You've spent the past few hours heading away from the worm! {change (TRAIL, -10)}|somebody got a bit too rowdy and damaged some of the hull. {change (HEAT, 10)}|when the hangover hits, they won't be. {change (CREW,-8)}|the wyrm probably isn't.|everybody was too busy partying to check on the drill, and you've dug deeper than you expected {change (DEPTH,5)}}
 +Ignore them.
-{birthdayboy} and all their friends are very sad. {change (CREW,-10)}
+{birthdayboy} and all their friends are very sad. {change (CREW,-5)}
     - + [DRILL] -> Top
 
 
@@ -343,8 +343,8 @@ Your drill churns ever onward, through miles of dirt and stone. You have a quiet
 +[Encourage the stokers]
     They tell you that they could increase the speed, but it'll take its toll on the hull.
         + +[Make it so!]
-        {change(HEAT,10)}
-        {change (TRAIL,10)}
+        {change(HEAT,5)}
+        {change (TRAIL,5)}
         They dutifully start shoveling fuel. 
         + + Nah, never mind
         - - + + [DRILL] ->Top
@@ -370,13 +370,13 @@ The efforts of Athens' finest minds have gotten you this far, but even they must
 ~temp CREWTYPE = crewType()
 //{~OFFICER|SOLDIER|SCIENTIST|CREW|NAVIGATOR|OTHER|ENGINEER}
 
-{CREWTYPE} {greekname()} comes to your office {~slouching against a wall|wringing their hands|far too early for this sort of thing}; "{~I can't sleep, see, with all the noise, so I've been thinking...|Cap, us and the boys have been talking|I've had a word with the {crewType()}, see...}" they say "{-HEAT > 10:Reckon the hull can't take much more of this heat. We need to find a way to cool it, and fast.|What are we going to do when we find this wyrm?}"
+{CREWTYPE} {greekname()} comes to your office {~slouching against a wall|wringing their hands|far too early for this sort of thing}; "{~I can't sleep, see, with all the noise, so I've been thinking...|Cap, us and the boys have been talking|I've had a word with the {crewType()}, see...}" they say "{-HEAT > 50:Reckon the hull can't take much more of this heat. We need to find a way to cool it, and fast.|What are we going to do when we find this wyrm?}"
 +[Reassure them]
-"All shall be well, and maybe all manner of thing too!" {~With that, they're reassured. For now. {change (CREW,10)}|... But they aren't buying it. {change (CREW, -8)}}
+"All shall be well, and maybe all manner of thing too!" {~With that, they're reassured. For now. {change (CREW,8)}|... But they aren't buying it. {change (CREW, -6)}}
 +[Yell at them]
-Must you do everything on this damn digger!? You're the captain here, and you're doing fine; that's what matters. {~Somehow, it works. The {CREWTYPE} slinks away. The next time you see them, they're working with renewed vigour. {change (CREW, 15)}|All nods and humble mutterings, but the {CREWTYPE} isn't one to forget this kind of thing. {change (CREW, -14)}}
+Must you do everything on this damn digger!? You're the captain here, and you're doing fine; that's what matters. {~Somehow, it works. The {CREWTYPE} slinks away. The next time you see them, they're working with renewed vigour. {change (CREW, 10)}|All nods and humble mutterings, but the {CREWTYPE} isn't one to forget this kind of thing. {change (CREW, -8)}}
 +[Ignore them]
-Not your problem. {~There's an Officer for this kind of thing; usually is, anyway.{change (CREW,5)}|The worry stays etched on their face as they rush back out.{change (CREW,-4)}}
+Not your problem. {~There's an Officer for this kind of thing; usually is, anyway.{change (CREW,5)}|The worry stays etched on their face as they rush back out.{change (CREW,-5)}}
 - + [DRILL] ->Top
 
 
@@ -400,7 +400,7 @@ You sit upright; can't sleep, you have work to do!
 ==Ration_trouble==
 Your crew are concerned that they're going to starve before they ever catch sight of a wyrm.
 + [Extra rations]
-   ??? maybe loss of trail {change (CREW, 5)}
+   In the time it takes to sort everyone out with extra rations, the wyrm has slithered away into the depths of the earth. The crew is pleased, at least.  {change (CREW, 5)} {change (TRAIL,-5)}
 + [Ignore them]
     Can't do much about it this far underground. {change (CREW,-10)}
     - + [DRILL] ->Top
@@ -409,7 +409,7 @@ Your crew are concerned that they're going to starve before they ever catch sigh
 ==tracks==
 Your scouts have reported something at the fringes of the drill-lights; something like a wyrmtrack. Not the track you're following... probably.
 +[Divert course!]
-    Maybe it'll be something interesting; maybe you'd been drifting off course the whole time. {~{change (TRAIL,10)}|{change (TRAIL,-10)}|{change (DEPTH,10)}|{change (DEPTH,-10)}}
+    Maybe it'll be something interesting; maybe you'd been drifting off course the whole time. {~{change (TRAIL,5)}|{change (TRAIL,-5)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}
 +[Ignore it.]
     You remain resolutely stuck to your current path.
 - + [DRILL] ->Top
@@ -419,15 +419,15 @@ The hull vibrates with it. {~A foul creaking noise.|A high pitched scraping.|Scr
 - + [DRILL] ->Top
 
 ==tremor==
-The world shakes! {~A passing wyrm?|An angry god?|Engine failure?|Too much wine?} Whatever the case, your wyrmdigger isn't in good shape. {change (HEAT,10)}
+The world shakes! {~A passing wyrm?|An angry god?|Engine failure?|Too much wine?} Whatever the case, your wyrmdigger isn't in good shape. {change (HEAT,5)}
 - + [DRILL] ->Top
 
 ==lost_trail==
 You've lost sight of the wyrmtrack somewhere in all the dirt and darkness.
 +[Redirect course]
-{~Maybe it'll help, maybe not. {~{change (TRAIL,10)}|{change (TRAIL,-10)}|{change (DEPTH,10)}|{change (DEPTH,-10)}}|You can see something, just about. ->tracks}
+{~Maybe it'll help, maybe not. {~{change (TRAIL,5)}|{change (TRAIL,-5)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}|You can see something, just about. ->tracks}
 +[Soldier on]
-If you keep going down, you'll find it eventually. {~{change (TRAIL,10)}|{change (TRAIL,-10)}|{change (DEPTH,10)}|{change (DEPTH,-10)}}
+If you keep going down, you'll find it eventually. {~{change (TRAIL,5)}|{change (TRAIL,-5)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}
 
 - + [DRILL] ->Top
 
@@ -435,26 +435,26 @@ If you keep going down, you'll find it eventually. {~{change (TRAIL,10)}|{change
 ==gasdanger==
 Chief Aeoliphile warns you that you're running straight into a pocket of gas.
 +[Redirect]
-Not worth the risk.{~{change (TRAIL,10)}|{change (TRAIL,-10)}|{change (DEPTH,10)}|{change (DEPTH,-10)}}
+Not worth the risk.{~{change (TRAIL,5)}|{change (TRAIL,-5)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}
 +[Plow on through]
-{~You emerge unscathed on the other side. That was practically a shortcut; you've gained on the wyrm. {change (TRAIL,20)}|Everything explodes! You survive but only just about. The crew are almost as badly shaken as the engines. {change (HEAT,-25)} {change (CREW, -10)}}
+{~You emerge unscathed on the other side. That was practically a shortcut; you've gained on the wyrm. {change (TRAIL,15)}|Everything explodes! You survive but only just about. The crew are almost as badly shaken as the engines. {change (HEAT,25)} {change (CREW, -15)}}
 - + [DRILL] ->Top
 
 ==sweltering==
 It's hideously hot. {~You swear you saw {greekname()} drinking... something.|Fans just move the stifling air around in circles|There is no escape from it|It's impossible to sleep}. {change (CREW,-10)}
 * [Divert for water] 
-    {~A day's diversion finds an underground river; You refill the onboard Baths, but the wyrm has pressed on without you...{change(TRAIL,-15)}{change(HEAT,-10)}|A day of pointless drilling; You find nothing. The heat feels so much worse for that wasted effort {change(TRAIL,-5)}{change(HEAT,5)}}.
+    {~A day's diversion finds an underground river; You refill the onboard Baths, but the wyrm has pressed on without you...{change(TRAIL,-10)}{change(HEAT,-10)}|A day of pointless drilling; You find nothing. The heat feels so much worse for that wasted effort {change(TRAIL,-5)}{change(HEAT,5)}}.
 + [Soldier on]
-    {~The crew strip down to undergarments, and you join them. Hellenic spirit prevails!{change(CREW,15)} {change(HEAT,5)} |The crew clench their teeth and crack on, working tirelessly. The heat lingers. {change(CREW, -10)} {change(HEAT,10)}}
+    {~The crew strip down to undergarments, and you join them. Hellenic spirit prevails!{change(CREW,10)} {change(HEAT,5)} |The crew clench their teeth and crack on, working tirelessly. The heat lingers. {change(CREW, -10)} {change(HEAT,10)}}
 
 - + [DRILL] ->Top
 
 ==Diamonds==
 A vein of shiny diamonds. {greekname()}'s eyes shine just as brightly in the lamplight. These aren't what you've come here for; but few among the crew can prevent their naked greed from showing.
 +[Collect them]
-A bonus even your crew can't complain at! Except for the Stoker, whose engines now groan under the extra weight... {change (CREW,10)} {change (TRAIL,-10)}
+A bonus even your crew can't complain at! Except for the Stoker, whose engines now groan under the extra weight... {change (CREW,5)} {change (TRAIL,-10)}
 +[Drill on!]
-Mutinous stares and grim faces, but you know the real prize awaits in the depths. {change (CREW,-5)} {change (TRAIL,10)}
+Mutinous stares and grim faces, but you know the real prize awaits in the depths. {change (CREW,-5)} {change (TRAIL,5)}
 - + [DRILL] -> Top
 
 ==Wyrmcast==
@@ -462,15 +462,15 @@ The wyrm has passed through here, shedding its skin as it passed. A slimy, sinuo
 +[Use the beak-shards to sharpen the drill]
     The wyrm once used this beak to cut through the earth; now you'll do it in its stead. Wyrmdiggers are not so unlike the wyrms themselves. {change (TRAIL, 10)} {~|The hull wasn't built for the added friction, though. {change (HEAT, 10)}}
 +[Use the moult to harden the hull]
-    Its segmented flesh is harder than boiled leather, perfectly adapted to the stresses of the deep earth. {change (HEAT, -20)}{~|The extra weight's slowing you down, mind. {change (TRAIL,-15)}}
+    Its segmented flesh is harder than boiled leather, perfectly adapted to the stresses of the deep earth. {change (HEAT, -10)}{~|The extra weight's slowing you down, mind. {change (TRAIL,-10)}}
 +[Gather its innards for supplies.]
-    They pay well for this meat in Athens; your crew should consider themselves fortunate. Indeed, there's a giddy atmosphere in the air as the first wyrm-rations are served... {change (CREW, 20)} {~|Perhaps too giddy; the next day, you find that the drill has somehow inverted itself. {change (TRAIL, -10)} {change (DEPTH,-10)}}
+    They pay well for this meat in Athens; your crew should consider themselves fortunate. Indeed, there's a giddy atmosphere in the air as the first wyrm-rations are served... {change (CREW, 10)} {~|Perhaps too giddy; the next day, you find that the drill has somehow inverted itself. {change (TRAIL, -10)} {change (DEPTH,-10)}}
 - + [DRILL] -> Top
 
 ==Shroom==
 A small cavern with flourishing mushroom-life.
 +[Use the stems to patch up your hull]
-Not the most solid material on or under the earth, but it'll hold things together for a while {change (HEAT, -10)}
+Not the most solid material on or under the earth, but it'll hold things together for a while {change (HEAT, -5)}
 +[Take the caps for supplies]
 Mushroom-flesh is woody and unappetising, but it provides enough sustenance for now. Your crew aren't wildly enthusiastic about them, but food is food. {change (CREW, 5)}
 - + [DRILL] -> Top
@@ -489,7 +489,7 @@ You swap {~some surface-trinkets|a few poems|some manuscripts} for {~some useful
 ==WyrmGlimpse==
 Shouting from the observation deck! There've been sightings of something pale and undulating, just beyond the drill's tip. Could it be the {WYRMDESC} {WYRMNAME} you've been hunting?
 +[Charge onwards recklessly!]
-    This is it! This is what you've been looking for! You whip the stokers up into a frenzy (not literally, of course), and the wyrmdigger lurches forward, scraping along the tunnel walls. {change (TRAIL,5)} {change (HEAT,5)}
+    This is it! This is what you've been looking for! You whip the stokers up into a frenzy (not literally, of course), and the wyrmdigger lurches forward, scraping along the tunnel walls. {change (TRAIL,10)} {change (HEAT,5)}
 +[Cautiously advance]
     You've come this far; no need to throw it all away at the final hurdle. Slowly, steadily, your drill weaves its way into the wyrm's tunnel.
 -    ->Glimpse2
