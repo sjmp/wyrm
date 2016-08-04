@@ -18,30 +18,31 @@ VAR SEENWORM = 0
 
 // {wormspecies()}
 // {drill()}
-// {DEPTH}
-+ Metic On Deck! -> Officer
-+ Mutiny -> Mutiny
-+ There! There! -> WyrmGlimpse
-+ The Wyrm -> WyrmRunin
-+ A Party! -> Birthday
-+ Ever Deeper -> Drill_1
-+ Ever Warmer -> Drill_2
-+ Downwards -> Dozing_off
-+ A Knock -> Concerns
-+ Deeper Still -> Drill_3
-+ Onwards -> Drill_4
-+ Biscuits Again -> Ration_trouble
-+ Rumbling On -> tracks
-+ A Creak -> weird_creaking
-+ A Bang! -> tremor
-+ Wyrmcast! -> Wyrmcast
-+ Lost -> lost_trail
-+ Gas! Gas! -> gasdanger
-+ Diamonds! -> Diamonds
-+ Mushrooms -> Shroom
-+ The Deep-Cave -> Encampment
-+ The Heat -> sweltering
-
++ Officer -> Officer
++ {CREW < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Mutiny -> Mutiny
++ {TRAIL > 60}{not WyrmGlimpse}{CREW > 0}{HEAT < 99}{DEPTH < 99} There! There! -> WyrmGlimpse
++ {TRAIL < 99}{CREW > 0}{HEAT < 99}{DEPTH < 99} The Wyrm -> WyrmRunin
++ {DEPTH > 25}{CREW > 0}{HEAT < 99}{DEPTH < 99} A Party! -> Birthday
++ {DEPTH < 25}{CREW > 0}{HEAT < 99}{DEPTH < 99} Ever Deeper -> Drill_1
++ {DEPTH > 25}{DEPTH < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Ever Warmer -> Drill_2
++ {CREW > 0}{HEAT < 99}{DEPTH < 99}Downwards -> Dozing_off
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} {CREW < 75} A Knock -> Concerns
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 51} {DEPTH < 75} Deeper Still -> Drill_3
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 76} Onwards -> Drill_4
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} {CREW < 65} Biscuits Again -> Ration_trouble
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} Rumbling On -> tracks
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} A Creak -> weird_creaking
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} A Bang! -> tremor
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 60} Wyrmcast! -> Wyrmcast
++ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 10} Lost -> lost_trail
++ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 60} Gas! Gas! -> gasdanger
++ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 60} Diamonds! -> Diamonds
++ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 40} Mushrooms -> Shroom
++ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 50} The Deep-Cave -> Encampment
++ {CREW > 0}{HEAT < 99}{DEPTH < 99}{HEAT > 60} The Heat -> sweltering
++ {DEPTH > 99} Dug Too Deep -> DepthFailure
++ {HEAT > 99} Structural Integrity -> HeatFailure
++ {CREW<1} The Pit-Madness -> CrewFailure
 
 
 
@@ -116,7 +117,7 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
     //     -> Report
     
 + (Cithaeron) {InterviewOread.Cithaeron < 3} Can you explain this machinery?
-    {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "The Bacchae-Thebian Cithaeron Nexus. A system of reverberators that pick up on escaping Nerve Branches where they leave the Arterial Steam Tributaries. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
+    {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "Bacchae-Thebian Cithaeron Nexus. System of reverberators.  Picks up on escaping Nerve Branches. From Arterial Steam Tributaries. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
     -> InterviewOread
     ++ Best be off... -> Officer
 
@@ -174,9 +175,15 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
     You send down a thin volume from the Digger's library "much apprecited! will remember this. thank"
     -> InterviewAeolikos
     
-+ Back to Drilling.
-    {InterviewAeolikos.Talent: "anytime friend"|"k"} says the message. Short and sweet.
-    - + DRILL -> Top
++ Sign off.
+    "k" says the message. A person of many words.
+    - + The Metic's Chair -> Officer
+    
+= Tour
+"Gud!" says the return message. "Honesty is best policy. Is danggerous here and need that." You descend down, through the levels. The corridors get lower, the staircases turn to ladders. You squeeze through the emergency seal and step out into light and heat. A great room, larger even than the deck, and spinning at its core - The Aeolipile. Silhouetted against the blaze is the Chief Aeolikos, arms outstretched, "A pleasure to finally meet you, Metic!"
++ Talk to the Aeolikos
+    You talk of the Aeolipile, pressure controls, steam driving, the gear shaft for the driller. He is really rather erudite, and admits to having once been a Metic. "My writing impediment meant I could only go so far. Besides, this is my real passion." He beams ear to ear.
++ Talk to the Aeolikos
 
 = InterviewAeolikosTourIntro
 "Gud! Honesty is best policy. Is danggerous here and need truth." You descend down, through the levels. The corridors get lower, the staircases turn to ladders. 
@@ -521,7 +528,37 @@ The inside of a Wyrm! Nobody has ever been inside a wyrm and survived before! Th
 Cackling maniacally, your driller rockets towards the {WYRMDESC} {WYRMNAME}, powered by Alexandria's finest engines. Few wyrmchasers have ever fought a wyrm and survived; for good reason, as it turns out. The inside of a wyrm is terribly hostile towards anything that isn't a wyrm, and your wyrmdriller certainly wasn't built for it. A swarm of tiny parasitic {wormspecies()}'s lunge for your driller, burrowing into every crack and crevice of your ship. You hear {crewType()} {greekname()} scream; then you, too, are beset by wyrms. Somehow, your foolish endeavour actually ended well. Your driller managed to stumble forward and pierce the wyrm's tiny brain, ending its life instantly. Some day, someone may find the husk of the wyrm; and your drill, crewed by skeletons. ->END
 
 ==LoserEnding
-Your nerve doesn't hold; you flee from the wyrm before it falls upon you with all its slithering might. The surface is far, far, far away, and your crew is scattered or dazed or half-dead. Eventually, your drill shudders to a halt; the sane and stable among you, few though you are, manage to crawl through a tunnel into a fungal cavern. You live out the rest of your days there, and never see the sun again. It's not a good life, and you wonder what you might have gained, if you had managed to steel yourself just a moment longer. ->END
+Your nerve doesn't hold; you flee from the wyrm before it falls upon you with all its slithering might. The surface is far, far, far away, and your crew is scattered or dazed or half-dead. Eventually, your drill shudders to a halt; the sane and stable among you, few though you are, manage to crawl through a tunnel into a fungal cavern. You live out the rest of your days there, and never see the sun again. It's not a good life; you wonder what you might have gained, if you had managed to steel yourself just a moment longer. ->END
 
-==HullEnding
-Your drill comes apart! Your hull falls to pieces! Your engine, tired with mistreatment, explodes! The long and short of it is that you are dead. ->END
+==HeatFailure
+Fires are starting to break out across the wyrmdigger. Your crew are collapsing like sandcastles in wind. You're standing in a puddle of sweat larger than some oceans. Unless you do something soon, that puddle will be all that's left of you.
+* Head fror the Cithaerthingy-whatsit
+If you can't stand the heat, get out of the kitchen. If you can't stand the ever-present crushing warmth of the depths of the earth, get out of the warm bits of the depths of the earth. With the Oread's help, you can find a reprieve; you just need to find it hidden in the vibrations. Carefully, cautiously, listening with the care of an inexperienced cat-burglar, you guide the driller towards your salvation. A lake! Hidden underground, a pocket of water, exactly what you need to cool off a burning piece of machinery. The drill isn't designed for underwater transit, of course, so you can't do much but wait uncomfortably for the water to drain off. It's saved you for now; but if things get worse again, there'll be no hope. No other lakes to be had. {change (HEAT, -10)}
+++ [DRILL] ->Top
+*->HeatEnding
+
+==HeatEnding
+Despite the desperate, panicked efforts of your crew and officers, there's nothing you can do to prevent your drill, your shell, the barrier between you and the endless depths of the earth, from coming to pieces. Without a drill you are nothing more than tiny, tiny specks, in a land which is not your own, helplessly wandering to their end. ->END
+
+
+==DepthFailure
+Too deep! Your whole hull starts creaking and moaning, like crushed aluminium. Which it will be fairly soon, if you stay this far underground; the pull of the Underworld is strong here, and no wyrmdigger could be built for such an awesome force.
+* [But they are built for something else.]
+It's true; not even the arts and minds in the hearts of Athens could manage to build anything that could survive a situation like this. However, you've gathered that they probably could build something to escape a situation like this. You dash belowdecks with all the speed you can muster, crack open the emergency seal, and behold the majesty of the control panel. The Corinthians build these systems, and only they truly can understand them. But you've picked up enough from your time belowdecks to pull off something fairly remarkable. You twist dials, pull levers, and adjust the orrery-wheels to the Aeolus Configuration. In short; you tell the hidiously complex machinery to vent a massive quantity of steam from the front of the drill. Steam has to work hard to lift an entire wyrmdigger; but it does work, and shunts you a good distance up the tunnel, to a point where the drill no longer screams quite so urgently. You're not going to be able to do this again; it takes far too much steam to do it twice. But it's bought you time. {change (DEPTH, -10)}
+ ++ [DRILL] ->Top
+* ->DepthEnding
+
+==DepthEnding
+The drill continues its descent into a land it was never built for. The Aeolikos, the Oread, the Pedon; none of their efforts can extricate you from this situation. Your drill cuts open a vein of the earth, spilling the hot red blood of the depths, consuming you and your crew in a great crushing flagration. The heat finds you before the rock does.
+->END
+
+==CrewFailure
+No mutiny, this. The stresses and strains of the uttermost depths have taken their toll on your crew's wellbeing; and on your own. The few among you that remain are in desperate danger of succumbing to madness. You can hear one of your crew screaming that they're a drill, while desperately trying to corkscrew through a wall. Things are looking grim. You feel like twisting into the earth yourself.
+* [Deploy the Quartermaster's Gambit!]
+    Standing on a nearby crate, you bellow at your crew: "What is the best in life?", you roar, shaking the earth, mightier than the most colossal wyrm. Their responses are as varied as they are muted; wearied laughter, unintelligible moans, strange mantras about the taste and texture of soft black earth, weeping, silence. That's okay; that's what you expected. Nodding, as if they'd provided you with some valuable input, you wheel out your last-ditch gamble; a table piled high with the finest delicacies. Well, as fine as you can muster in a steel box miles under the earth. The sights, colours, smells, tastes; these things help revive your crew, giving them something-like-focus. Press on, while you still can. {change (CREW,10)}
+    ++ [DRILL] ->Top
+* ->CrewEnding
+
+==CrewEnding
+Fall to the floor. You shall not rise again. You are nothing but a slug, a snake, a snail, legless and limbless, crawling on the earth, on the belly of a beast. What else could you be, so far under the ground? This land was not made for the mind, therefore, no mind can exist within this land. Lie still. Lie still.
+-> END
