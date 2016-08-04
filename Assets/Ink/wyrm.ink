@@ -18,7 +18,7 @@ VAR SEENWORM = 0
 
 // {wormspecies()}
 // {drill()}
-+ Officer -> Officer
++ On Deck -> Officer
 + {CREW < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Mutiny -> Mutiny
 + {TRAIL > 60}{not WyrmGlimpse}{CREW > 0}{HEAT < 99}{DEPTH < 99} There! There! -> WyrmGlimpse
 + {TRAIL < 99}{CREW > 0}{HEAT < 99}{DEPTH < 99}{WyrmGlimpse} The Wyrm -> WyrmRunin
@@ -101,7 +101,9 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
         - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
         - else: \-" She screws her eyes up in pain, "The pain! By Zeus... here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
-    ++ Understood -> InterviewOread
+    ++ Back to Drilling.
+    She nods, and turns away. The humming continues, after you walk away
+    +++ DRILL -> Top 
     
     // - + Increase Depth
     //     ~change(DEPTH,20)
@@ -150,7 +152,7 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
         - else: have sealed boiler. vents dont work. men died. must stop. too hot. is bad. trapped. the heat is
     } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. They could be dead. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
     ++ Understood? 
-    You must get back to deck.    
+    You must get back to work.    
     +++ DRILL -> Top
     
     //     - + Increase H
@@ -226,7 +228,7 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
         - else:" Cheerfully he raises his {~tankard|flask|jar|glass|mug}. "Crew's getting on as well as I could ask for, though. If that's not cause for celebration, what is?"
     }
     ++ Carry on. 
-    He takes a long drag as you leave.
+    He takes a long swig as you leave.
     +++ DRILL -> Top
 + Accept a drink from the Quartermaster
     -> InterviewQuartermasterBooze
@@ -264,13 +266,15 @@ He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule}
         - DEPTH < 80: But we are so, so deep. I've never been..." He trails off, looking away.
         - else: "Our depth is... Is..." He locks eyes with you. There is a fire in there. A glint of something wild and wondrous and wrong. "Deep. So deep. Deeper than anyone has ever gone." He smiles, a huge, wild grin showing many, many teeth.
     }
-    ++ Understood. -> InterviewPedon
+    ++ Understood
+        The Pedon saunters off, almost aimlessly.
+    +++ DRILL -> Top
 
-+ Talk to the Pedon {Dreams > 1: about Dreams}
-    You grab the Pedon just before turning in for the night. {
-    - Dreams < 1: He's a little shy at first, but opens up with a drink or two. He's very interested in dreams, for some reason. "Have you had any? Any dreams about Wyrms?" You're more interested in his understanding of Wyrm biology, which seems solid, but the topic bores him.
-    - Dreams < 2: You come rushing back. He grins that broad, broad grin. "We're all having them now." he says, "All of us, and more every day. I think {greekname()}, you know, the {crewType()} that we couldn't wake up? He's got something to do with it." You feel a creeping sensation. Fear?
-    - Dreams < 3: The Pedon is smiling even wider as you rush to him with a stack of your own dream notes. "The food!" he says. "It's the food! {crewType()} {greekname()} wasn't eating and his dreams, well, they stopped! Mystery solved! Panic over! Science prevails!" This does not help. You ask him if he's concerned; "Nonsense! All will be well! All will be well!" and with that he pushes you from the door. Perhaps the Pedon is more Metic than you, after all...
++ Talk to the Pedon {Dreams > 0: about Dreams}
+    {
+    - Dreams == 0: He's a little shy at first, but opens up with a drink or two. He's very interested in dreams, for some reason. "Have you had any? Any dreams about Wyrms?" You're more interested in his understanding of Wyrm biology, which seems solid, but the topic bores him.
+    - Dreams == 1: You come rushing back. He grins that broad, broad grin. "We're all having them now." he says, "All of us, and more every day. I think {greekname()}, you know, the {crewType()} that we couldn't wake up? He's got something to do with it." You feel a creeping sensation. Fear?
+    - Dreams == 2: The Pedon is smiling even wider as you rush to him with a stack of your own dream notes. "The food!" he says. "It's the food! {crewType()} {greekname()} wasn't eating and his dreams, well, they stopped! Mystery solved! Panic over! Science prevails!" This does not help. You ask him if he's concerned; "Nonsense! All will be well! All will be well!" and with that he pushes you from the door. Perhaps the Pedon is more Metic than you, after all...
     - else: He laughs - "All will be well and all manner of things will be well. Once you know a thing, you cannot fear it. Fear is the mind killer, dontcha know!"
     }
     ++ I must go...
