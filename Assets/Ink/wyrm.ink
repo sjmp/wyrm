@@ -58,13 +58,13 @@ VAR SEENWORM = 0
 ~return "{~Percalus|Euphro|Phylace|Limnoreia|Megaera|Glyke|Ione|Medea|Scylla|Amatheia|Hermione|Ctimene|Milo|Astyocheia|Hecuba|Callianessa|Hermine|Megara|Dirce|Artemidora|Plutarch|Theophanes|Thyrsos|Pittacus|Copreus|Panaetius|Epimenes|Hermeros|Pigres|Apollodoros|Phineus|Agamedes|Oliatos|Peteos|Phaestus|Apisaon|Demonax|Dardanus|Aristogeiton|Asopodoros}"
 
 ==function wormspecies()==
-~ return "{~Platyhelm|Cest|Acoelo|Nema|Tetra|Helm|Bilatere|Tentaculario|Diphyll|Mono|Turbella}{~inth|mate|ode|gene|ide|annelid|bothride|ozoa|aria}"
+~ return "{~Platyhelm|Cest|Acoelo|Nema|Tetra|Helm|Bilatere|Tentaculario|Diphyll|Mono|Turbella|Scolex|Anax|Anatarax|Amaterax|Annel|Hel}{~inth|mate|ode|gene|ide|annelid|bothride|ozoa|aria|an|phile|phobe|tode|irate}"
 
 ==function crewType()==
 ~ return "{~First Anthyposminagos|Spearman|Philosopher-Officer|Deck Hand|Second Navarchos|Stoker|Alchemist}"
 
 ==function wormdescription()==
- ~return "{~Red|White|Black|Orange|Bronze|Gold|Blue|Fanged|Slime|Parasitic|Dark|Bloody|Wyrm|Helm of the|}"
+ ~return "{~Red|White|Invariegated|Slithering|Deep-Dwelling|Homeric|Aristotlean|Platonic|Hermetic|Aeoliphilic|Black|Orange|Bronze|Gold|Blue|Fanged|Slime|Parasitic|Dark|Bloody|Wyrm|Helm of the|}"
  
  
 === Officer ===
@@ -76,7 +76,7 @@ The deck is at the very top of the Wyrmdigger, a great conical room of gantries 
 
 //DEPTH & TRAIL
 = Oread
-The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the Cithaeron|what looks like a giant, exploded, golden clock}, eyes closed, {~hands massaging two foot long metal bars|bare feet on a long, curved tube|fingers dancing against a vibrating set of tuning forks|one finger to her lips, another skipping on a spinning sphere}. "Little busy, Metic. Can I help?"
+The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the Cithaeron|what looks like a giant, exploded golden clock}, eyes closed, {~hands massaging two foot long metal bars|bare feet on a long, curved tube|fingers dancing against a vibrating set of tuning forks|one finger to her lips, another skipping on a spinning sphere}. "Little busy, Metic. Can I help?"
 -> InterviewOread
 
 = InterviewOread
@@ -86,16 +86,16 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
 + (Report) Report!
     {
         - DEPTH < 20: "Barely into the Crust. Skimming soil  
-        - DEPTH < 40:  "Full Crust, Metis. On full tilt
+        - DEPTH < 40:  "Full Crust, Metic. On full tilt
         - DEPTH < 60:  "Upper Lithosphere. Picking up a fair amount
         - DEPTH < 80: "Lower Lithosphere." Her eyes are clenched tight "Lot of interference down here
         - else: Her face is gaunt. Etched with sweat. "Mantle. So low. I can't tell what's what
     }<>{
         - TRAIL < 20: ." She looks bored. "Cithaeron's got nothing. Rocks. Soil. Ruins. Soil." 
         - TRAIL < 40: ..." Her ear is against a metal tube. "Something... Maybe volcanic. Unsure."
-        - TRAIL < 60: . I hear it, though. Wyrm-noise. Faint, rythmic, close." She puts up her hand to ward you off.
+        - TRAIL < 60: . I hear it, though. Wyrm-noise. Faint, rhythmic, close." She puts up her hand to ward you off.
         - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
-        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
+        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
     
     // - + Increase Depth
@@ -113,10 +113,10 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
     
     -> InterviewOread
 + (Cithaeron) {InterviewOread.Cithaeron < 3} Can you explain this machinery?
-    {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "The Bacchae-Thebian Cithaeron Nexus. A system of revibrators that pick up on escaping Nerve Branches where they leave the Arterial Steam Branches. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
+    {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "The Bacchae-Thebian Cithaeron Nexus. A system of reverberators that pick up on escaping Nerve Branches where they leave the Arterial Steam Tributaries. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
     -> InterviewOread
-+ As you where.
-    The Pedon nods and turns away. The metal sings.
++ As you were.
+    The Oread nods and turns away. The metal sings.
     - + DRILL -> Top
 
 
@@ -176,26 +176,26 @@ Your crew are tired of being cooped up in this metal coffin. "{~We miss the sun!
 Diplomacy never hurt anyone; but it takes time, time, precious time, while all the while the heat of the earth seeps into your wyrmdigger.
 *{Mutiny>0}[Engage them in debate.] 
     If we turn back now, what was the point of all this? Some of your crew mumble in agreement; but that argument isn't likely to work twice.
-    ~change(HEAT,2)
+    ~change(HEAT,5)
 *{Mutiny>1}[Put it to a vote]
-    It runs close; in the end, your vote breaks the tie. 
-    ~change(HEAT,3)
+    The atmosphere is nervous; no one person is entirely sure of their neighbour's convictions. In the end, the tie is broken by a single vote; yours.
+    ~change(HEAT,10)
 *{Mutiny>2}[Struggle, one last time, to persuade them.]
-    They warn you; they won't listen again. 
-    ~change(HEAT,4)
-*[] No matter how hard you try, it's impossible to put forward a reasonable argument. You are swiftly deposed, and your crew start the long journey back to the surface. -> END
+    You beg, you bargain, you plead; you're so close, now, so close! Giving up now would be folly! Eventually, after what feels like years of protest, you manage to bring them around; but this is your last chance. You'll never manage it again.
+    ~change(HEAT,15)
+*[] No matter how hard you try, it's impossible to put forward a reasonable argument. Any longer in this cradle of horrors and there'll be nothing left of you. You are swiftly deposed, and your crew start the long journey back to the surface. -> END
     - + [DRILL] ->Top
 
 =Rebellion
 Brutal, short and to the point; violence is the answer to many questions.
 *{Mutiny>0}[Make a show of force.]
-    You execute a crewman right there and then! Their loyalty is reinvigorated, for now... 
-    ~change(CREW,-1)
-*{Mutiny>1}If it's war they want... Then it's a war they'll get. You gather the loyal crew and fight a bitter battle to the end. 
-    ~change(CREW,-3)
+    Drawing your ceremonial sword, you make an example of the most racuous mutineer. The message is clear; the mutiny dies down, but your crew's loyalty is frayed.
+    ~change(CREW,-10)
+*{Mutiny>1}If it's war they want... Then it's a war they'll get. You gather your loyalists and bunker down. When the fighting stops, you're left standing; unfortunately, most of your crew isn't.
+    ~change(CREW,-15)
 *{Mutiny>2}[A last stand]
-    Holing up in the captain's office, you fight and fight and fight. In the end, you're left terribly wounded; you'll never survive another battle like this. 
-    ~change(CREW,-3)
+    Holing up in the captain's office, you fight and fight and fight. A few loyal souls remain to you, 'til the bitter end; when the mutiny has been broken, they're even fewer. You sustained a hefty wound in the fight; it's not lethal, but if things turn sour again, you won't be in any condition to protect yourself.
+    ~change(CREW,-20)
 *[] It's no good; your crew's loyalty is frayed, and you won't last a second in a fight. Give up, return to the surface. -> END
     - + [DRILL] ->Top
 
