@@ -142,14 +142,16 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
         - TRAIL < 60: boiler is well moving fasterly. nerly 60. fast ish
         - TRAIL < 80: over 80 is good full tilt, full power that is. stoker flat out
         - else: "VERY FAS near top speed. 100!!!! is good. prefect 
-    } STOP <> PRESSURE {
+    } STOP <>PRESSURE {
         - HEAT < 20: almos cold lots of water. keepin cool how u r also cool (joke)
         - HEAT < 40: startin to build have used steam releses. might get warmer
         - HEAT < 60: getting danggerous canot contain. very warm. hope u are ok
         - HEAT < 80: high. water low. getting crit- critic- cri- bad. losing control
         - else: have sealed boiler. vents dont work. men died. must stop. too hot. is bad. trapped. the heat is
     } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. They could be dead. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
-    ++ Understood. -> InterviewOread
+    ++ Understood? 
+    You must get back to deck.    
+    +++ DRILL -> Top
     
     //     - + Increase H
     //     ~change(HEAT,20)
@@ -205,7 +207,7 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
 
 //HEAT & MORALE
 = Quartermaster
-"Welcome!" The Quartermaster is a well built, bearded gentlemen. He exhales lurid blue pipesmoke. {{CREW>40}He's smiling; he's usually smiling.|He's not smiling today...} {{CREW>40}"Come in Metic! Come sit. Drink?"|"Oh. {PLAYERNAME}. Good to see you're still on your feet. Want something?"}. His eyes are two different colours; {Oread: Didn't the Oread have something strange with her eyes too?|It's really rather distracting.}
+"Welcome!" The Quartermaster is a well built, bearded gentlemen. He exhales lurid blue pipesmoke. {CREW>40:He's smiling; he's usually smiling.|He's not smiling today...} {CREW>40:"Come in Metic! Come sit. Drink?"|"Oh. {PLAYERNAME}. Good to see you're still on your feet. Want something?"}. His eyes are two different colours; {Oread: Didn't the Oread have something strange with her eyes too?|It's really rather distracting.}
 -> InterviewQuartermaster
 
 = InterviewQuartermaster
@@ -221,23 +223,11 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
         - CREW < 40: " He grimaces. "Things are looking pretty ugly, in all honesty. If we don't do something soon... well. I won't worry you."
         - CREW < 60: " He sips pensively from a {~tankard|flask|jar|glass|mug}. "Hearing some murmurs among the crew. {~Haven't had a good birthday party in a while, I think.|Fresh food's are running low. Plenty of cans to go round, mind.|Some of them were expecting more excitement.|Cabin fever, I suspect.|They could use a drink.|}"
         - CREW < 80: " He takes a swig from his {~tankard|flask|jar|glass|mug}. "Crew could be more enthusiastic, but I don't mind. Tried throwing a party? That usually cheers them up."
-        - else:" Cheerful, he raises his {~tankard|flask|jar|glass|mug}. "Crew's getting on as well as I could ask for, though. If that's not cause for celebration, what is?"
+        - else:" Cheerfully he raises his {~tankard|flask|jar|glass|mug}. "Crew's getting on as well as I could ask for, though. If that's not cause for celebration, what is?"
     }
-    
-        // - + Increase Depth
-    //     ~change(CREW,20)
-    //     -> Report
-    // -- + Decrease Depth
-         ~change(CREW,-20)
-    //     -> Report
-    // -- + Increase Trail
-    //     ~change(TRAIL,20)
-    //     -> Report
-    // -- + Decrease Trail
-    //     ~change(TRAIL,-20)
-    //     -> Report
-    ++ Carry on. -> Officer
-    ++ One more thing... -> InterviewQuartermaster
+    ++ Carry on. 
+    He takes a long drag as you leave.
+    +++ DRILL -> Top
 + Accept a drink from the Quartermaster
     -> InterviewQuartermasterBooze
 + Back to Drilling.
@@ -250,7 +240,8 @@ He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule}
 +Another!
 ->InterviewQuartermasterBooze
 +Back to Business
-->Officer
+    You stagger away.
+    ++ DRILL -> Top
 
 
 //MORALE & DEPTH
@@ -275,9 +266,9 @@ He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule}
     }
     ++ Understood. -> InterviewPedon
 
-+ Talk to the Pedon {Dreams < 2: about Dreams}
++ Talk to the Pedon {Dreams > 1: about Dreams}
     You grab the Pedon just before turning in for the night. {
-    - Dreams < 1: He's a little shy at first, but opens up with a drink or two. He's very interested in dreams, for some reason. "Have you had any? Any dreams about Wyrms?". You're more interested in his understanding of Wyrm biology, which seems solid, but the topic bores him.
+    - Dreams < 1: He's a little shy at first, but opens up with a drink or two. He's very interested in dreams, for some reason. "Have you had any? Any dreams about Wyrms?" You're more interested in his understanding of Wyrm biology, which seems solid, but the topic bores him.
     - Dreams < 2: You come rushing back. He grins that broad, broad grin. "We're all having them now." he says, "All of us, and more every day. I think {greekname()}, you know, the {crewType()} that we couldn't wake up? He's got something to do with it." You feel a creeping sensation. Fear?
     - Dreams < 3: The Pedon is smiling even wider as you rush to him with a stack of your own dream notes. "The food!" he says. "It's the food! {crewType()} {greekname()} wasn't eating and his dreams, well, they stopped! Mystery solved! Panic over! Science prevails!" This does not help. You ask him if he's concerned; "Nonsense! All will be well! All will be well!" and with that he pushes you from the door. Perhaps the Pedon is more Metic than you, after all...
     - else: He laughs - "All will be well and all manner of things will be well. Once you know a thing, you cannot fear it. Fear is the mind killer, dontcha know!"
