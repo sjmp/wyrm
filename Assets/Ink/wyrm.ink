@@ -143,7 +143,7 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
         - HEAT < 60: getting danggerous canot contain. very warm. hope u are ok
         - HEAT < 80: high. water low. getting crit- critic- cri- bad. losing control
         - else: have sealed boiler. vents dont work. men died. must stop. too hot. is bad. trapped. the heat is
-    } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
+    } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. They could be dead. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
     
     //     - + Increase H
     //     ~change(HEAT,20)
@@ -160,26 +160,37 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
     
     -> InterviewAeolikos
     
-+ Request to tour the Engines.
++ {HEAT < 80} {InterviewAeolikosTour == 0} Request to tour the Engines.
     "have u been in a digger engines before? pleas be honest" the return message reads.
-    ++ Of course I have, you lie 
+    ++ You lie - Of course!
     He replies, naming 'heat' and 'bad condisions' as excuses why you couldn't possibly visit. Even through the grammatical errors, you sense this isn't the truth. 
-    ++ (Talent) I'll haven't, to be honest -> Tour
-   
-+ Sign off.
-    "k" says the message. A person of many words.
-    - + The Metic's Chair -> Officer
+    ++ You're honest - I haven't, I'm afraid. -> InterviewAeolikosTour
+  
++ (Talent){InterviewAeolikosTour == 1} Send down poetry.
+    You send down a thin volume from the Digger's library "much apprecited! will remember this. thank"
+    -> InterviewAeolikos
     
-= Tour
-"Gud!" says the return message. "Honesty is best policy. Is danggerous here and need that." You descend down, through the levels. The corridors get lower, the staircases turn to ladders. You squeeze through the emergency seal and step out into light and heat. A great room, larger even than the deck, and spinning at it's core - The Aeolipile. Sillouted against the blaze is the Chief Aeolikos, arms outstretched, "A pleasure to finally meet you, Metic!"
-+ Talk to the Aeolikos
-    You talk of the Aeolipile, pressure controls, steam driving, the gear shaft for the driller. He is really rather erudite and admits to having once been a Metic. "My writing impedement meant I could only go so far. Besides, this is my real passion." He beams ear to ear.
-+ Talk to the Aeolikos
++ Sign off.
+    {InterviewAeolikos.Talent: "anytime friend"|"k"} says the message. Short and sweet.
+    - + The Metic's Chair -> Officer
 
-+ Return to the deck 
-    The stokers wave merrily goodbye. 
--> Officer
 
+
+= InterviewAeolikosTourIntro
+"Gud! Honesty is best policy. Is danggerous here and need truth." You descend down, through the levels. The corridors get lower, the staircases turn to ladders. 
++ Step out into the light and heat. -> InterviewAeolikosTour
+
+=InterviewAeolikosTour
+The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {Sillouted against the blaze is the Chief Aeolikos, arms outstretched, "Metic! A pleasure!"|"Where next?" grins the Aeolikos}
+* {InterviewAeolikosTour.heat > 0} Continue... Down... Where... 
+    Your head swims. The heat, ever present, becomes too much. The Chief Aeolikos grabs your arm firmly "Easy now. Let's get back. You've done better than most. Better than I did. Come down again sometime. I appreciated it. Send me poetry. I miss poetry, down here." 
+    ++ You come around, back on deck -> Officer
+* {InterviewAeolikosTour.heat < 1}Talk to the Aeolikos
+    You talk of the Aeolipile, pressure controls, steam driving, the gear shaft for the driller. They are really rather erudite, even admitting to once having been an Second Metic themselves. "My unfortunate writing impedement meant I could only go so far. Besides, this is my real passion." They beam ear to ear. 
+    ++ (heat) Weather the heat -> InterviewAeolikosTour
++ {InterviewAeolikosTour.heat < 1}Examine the Aeolipile
+    A ten foot sphere of spinning bronze, blowing white hot. "Quite impressive, no?" asks the Chief Aeolikos. "I built it myself. It's a hybrid - The Makedonians build great Male steam engines, the Athenians Female. This is something altogether different. Special." They grin that broad grin. "Much like you and I, eh, Metic?"
+    ++ (heat) Weather the heat -> InterviewAeolikosTour
 
 
 //HEAT & MORALE
