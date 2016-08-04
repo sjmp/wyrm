@@ -84,7 +84,10 @@ The deck is at the very top of the Wyrmdigger, a great conical room of gantries 
 + The Pedon on her crew and Digger -> Pedon
 + The Chief Aeolikos, down in the engines -> Aeolikos
 
+
+
 //DEPTH & TRAIL
+//Listening person
 = Oread
 The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the Cithaeron|what looks like a giant, exploded, golden clock}, eyes closed, {~hands massaging two foot long metal bars|bare feet on a long, curved tube|fingers dancing against a vibrating set of tuning forks|one finger to her lips, another skipping on a spinning sphere}. "Little busy, Metic. Can I help?"
 -> InterviewOread
@@ -126,12 +129,72 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
     {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "The Bacchae-Thebian Cithaeron Nexus. A system of revibrators that pick up on escaping Nerve Branches where they leave the Arterial Steam Branches. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
     -> InterviewOread
 + As you where.
-    The Pedon nods and turns away. The metal sings.
-    - + DRILL -> Top
+    The Oread nods and turns away. The metal sings.
+    - + The Metic's Chair -> Officer
 
 
 
-//DEPTH & TRAIL
+
+//TRAIL & HEAT
+//Think big tough engineering bloke. Speed and Hull.
+= Aeolikos
+The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. You have to communicate by Hermetic pipe message.
+-> InterviewAeolikos
+
+= InterviewAeolikos
++ (Report) Report!
+    You unfurl the message; "SPED {
+        - TRAIL < 20: slow moving 0 to 20. ok but trying to sped up stokers. to slow 
+        - TRAIL < 40: half tilt, not quit 40. ok could b beter but good. to many rocks
+        - TRAIL < 60: boiler is well moving fasterly. nerly 60. fast ish
+        - TRAIL < 80: over 80 is good full tilt, full power that is. stoker flat out
+        - else: "VERY FAS near top speed. 100!!!! is good. prefect 
+    } STOP <> PRESSURE {
+        - HEAT < 20: almos cold lots of water. keepin cool how u r also cool (joke)
+        - HEAT < 40: startin to build have used steam releses. might get warmer
+        - HEAT < 60: getting danggerous canot contain. very warm. hope u are ok
+        - HEAT < 80: high. water low. getting crit- critic- cri- bad. losing control
+        - else: have sealed boiler. vents dont work. men died. must stop. too hot. is bad. trapped. the heat is
+    } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
+    
+    //     - + Increase H
+    //     ~change(HEAT,20)
+    //     -> Report
+    // -- + Decrease H
+    //     ~change(HEAT,-20)
+    //     -> Report
+    // -- + Increase Trail
+    //     ~change(TRAIL,20)
+    //     -> Report
+    // -- + Decrease Trail
+    //     ~change(TRAIL,-20)
+    //     -> Report
+    
+    -> InterviewAeolikos
+    
++ Request to tour the Engines.
+    "have u been in a digger engines before? pleas be honest" the return message reads.
+    ++ Of course I have, you lie 
+    He replies, naming 'heat' and 'bad condisions' as excuses why you couldn't possibly visit. Even through the grammatical errors, you sense this isn't the truth. 
+    ++ (Talent) I'll haven't, to be honest -> Tour
+   
++ Sign off.
+    "k" says the message. A person of many words.
+    - + The Metic's Chair -> Officer
+    
+= Tour
+"Gud!" says the return message. "Honesty is best policy. Is danggerous here and need that." You descend down, through the levels. The corridors get lower, the staircases turn to ladders. You squeeze through the emergency seal and step out into light and heat. A great room, larger even than the deck, and spinning at it's core - The Aeolipile. Sillouted against the blaze is the Chief Aeolikos, arms outstretched, "A pleasure to finally meet you, Metic!"
++ Talk to the Aeolikos
+    You talk of the Aeolipile, pressure controls, steam driving, the gear shaft for the driller. He is really rather erudite and admits to having once been a Metic. "My writing impedement meant I could only go so far. Besides, this is my real passion." He beams ear to ear.
++ Talk to the Aeolikos
+
++ Return to the deck 
+    The stokers wave merrily goodbye. 
+-> Officer
+
+
+
+//HEAT & MORALE
 = Quartermaster
 I'm Paul!
 -> InterviewQuartermaster
@@ -152,28 +215,69 @@ I'm Paul!
         - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
     
+        // - + Increase Depth
+    //     ~change(DEPTH,20)
+    //     -> Report
+    // -- + Decrease Depth
+    //     ~change(DEPTH,-20)
+    //     -> Report
+    // -- + Increase Trail
+    //     ~change(TRAIL,20)
+    //     -> Report
+    // -- + Decrease Trail
+    //     ~change(TRAIL,-20)
+    //     -> Report
+    
     -> InterviewQuartermaster
 + Other option.
-    -> InterviewOread
+    -> InterviewQuartermaster
 + As you where.
     The Quartermaster grins, before diving back into a ledger.
-    - + DRILL -> Top
+    - + The Metic's Chair -> Officer
 
 
-
-
-
-//TRAIL & HEAT
-= Aeolikos
-I power the Aeolikos
-+ DRILL -> Top
 
 
 //MORALE & DEPTH
 = Pedon
-I look after the crew
-+ DRILL -> Top
+I'm Caolain!
+-> InterviewPedon
 
+= InterviewPedon
++ Report!
+    {
+        - DEPTH < 20: "Barely into the Crust. Skimming soil  
+        - DEPTH < 40:  "Full Crust, Metis. On full tilt
+        - DEPTH < 60:  "Upper Lithosphere. Picking up a fair amount
+        - DEPTH < 80: "Lower Lithosphere." Her eyes are clenched tight "Lot of interference down here
+        - else: Her face is gaunt. Etched with sweat. "Mantle. So low. I can't tell what's what
+    }<>{
+        - TRAIL < 20: ." She looks bored. "Cithaeron's got nothing. Rocks. Soil. Ruins. Soil." 
+        - TRAIL < 40: ..." Her ear is against a metal tube. "Something... Maybe volcanic. Unsure."
+        - TRAIL < 60: . I hear it, though. Wyrm-noise. Faint, rythmic, close." She puts up her hand to ward you off.
+        - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
+        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
+    }
+    
+        // - + Increase Depth
+    //     ~change(DEPTH,20)
+    //     -> Report
+    // -- + Decrease Depth
+    //     ~change(DEPTH,-20)
+    //     -> Report
+    // -- + Increase Trail
+    //     ~change(TRAIL,20)
+    //     -> Report
+    // -- + Decrease Trail
+    //     ~change(TRAIL,-20)
+    //     -> Report
+    
+    -> InterviewPedon
++ Other option.
+    -> InterviewPedon
++ As you where.
+    The Quartermaster grins, before diving back into a ledger.
+    - + The Metic's Chair -> Officer
  
 
 
