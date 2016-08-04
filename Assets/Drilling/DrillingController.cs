@@ -20,6 +20,7 @@ namespace Assets.Drilling
         public Image Wyrm;
         public bool UnleashTheWyrm = false;
         public bool AtStart = true;
+        public int Officers = 2;
 
         // Use this for initialization
         void Start ()
@@ -38,8 +39,20 @@ namespace Assets.Drilling
             if (!AtStart)
             {
                 //Choose and enter a random story
-                InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
-                InkStory.Continue();
+                if (Officers == 2)
+                {
+                    InkStory.ChooseChoiceIndex(0);
+                    InkStory.Continue();
+                    Officers = 0;
+                }
+                else
+                {
+                    InkStory.ChooseChoiceIndex(RandomTo(InkStory.currentChoices.Count));
+                    InkStory.Continue();
+                    Officers++;
+
+                }
+
             }
             else
             {

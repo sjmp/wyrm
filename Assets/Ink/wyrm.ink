@@ -19,7 +19,7 @@ VAR SEENWORM = 0
 // {wormspecies()}
 // {drill()}
 // {DEPTH}
-+ Officer -> Officer
++ Metic On Deck! -> Officer
 + Mutiny -> Mutiny
 + There! There! -> WyrmGlimpse
 + The Wyrm -> WyrmRunin
@@ -68,12 +68,11 @@ VAR SEENWORM = 0
  
  
 === Officer ===
-The deck is at the very top of the Wyrmdigger, a great conical room of gantries and stations. You consult...
-+ The Oread for a Sound Report -> Oread
-+ The Quartermaster on the mission progress -> Quartermaster
-+ The Pedon on her crew and Digger -> Pedon
-+ The Chief Aeolikos, down in the engines -> Aeolikos
-
+You sit on deck, at the very top of the Wyrmdigger. Second Metic {greekname()} suggests you call for an officer's report.  
++ Get a Sound Report from the Oread -> Oread
++ Check in with the Quartermaster -> Quartermaster
++ Ask the Pedon and the crew and Digger -> Pedon
++ Consult the Chief Aeolikos -> Aeolikos
 
 
 //DEPTH & TRAIL
@@ -84,7 +83,7 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
 
 = InterviewOread
 + (Talent) {InterviewOread.Cithaeron == 3}{InterviewOread.Talent < 2} Can I have a go?
-    {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time." -> InterviewOread}
+    {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time."}
     
 + (Report) Report!
     {
@@ -100,6 +99,8 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
         - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
         - else: \-" She screws her eyes up in pain, "The pain! By Zeus... here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
+    ++ Carry on. -> Officer
+    ++ One more thing... -> InterviewOread
     
     // - + Increase Depth
     //     ~change(DEPTH,20)
@@ -114,11 +115,16 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
     //     ~change(TRAIL,-20)
     //     -> Report
     
-    -> InterviewOread
+
+    
 + (Cithaeron) {InterviewOread.Cithaeron < 3} Can you explain this machinery?
     {!"The Cithaeron. Where I listen."|"The Cithaeron. Like I said."|She opens her eyes for the first time, and leans down to you. Her eyes are green, like emeralds. "The Bacchae-Thebian Cithaeron Nexus. A system of reverberators that pick up on escaping Nerve Branches where they leave the Arterial Steam Tributaries. Stuff happens outside. They pick it up. It comes back. And. I. Listen. To. It." She punctuates each word with a fist, punching a metal bar that rings dully with each strike. "It's! Called! The! Cithaeron!" She stares at you, teeth bared.}
     -> InterviewOread
-    - + The Metic's Chair -> Officer
+    ++ Best be off... -> Officer
+
++ That'll be all
+    She nods, and turns away. The humming continues, after you walk away
+    ++ DRILL -> Top 
 
 
 
@@ -144,6 +150,8 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
         - HEAT < 80: high. water low. getting crit- critic- cri- bad. losing control
         - else: have sealed boiler. vents dont work. men died. must stop. too hot. is bad. trapped. the heat is
     } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. They could be dead. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
+    ++ Carry on. -> Officer
+    ++ One more thing... -> InterviewOread
     
     //     - + Increase H
     //     ~change(HEAT,20)
@@ -158,13 +166,11 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
     //     ~change(TRAIL,-20)
     //     -> Report
     
-    -> InterviewAeolikos
-    
 + {HEAT < 80} {InterviewAeolikosTour == 0} Request to tour the Engines.
     "have u been in a digger engines before? pleas be honest" the return message reads.
     ++ You lie - Of course!
     He replies, naming 'heat' and 'bad condisions' as excuses why you couldn't possibly visit. Even through the grammatical errors, you sense this isn't the truth. 
-    ++ You're honest - I haven't, I'm afraid. -> InterviewAeolikosTour
+    ++ You're honest - I haven't, I'm afraid. -> InterviewAeolikosTourIntro
   
 + (Talent){InterviewAeolikosTour == 1} Send down poetry.
     You send down a thin volume from the Digger's library "much apprecited! will remember this. thank"
@@ -172,7 +178,7 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
     
 + Sign off.
     {InterviewAeolikos.Talent: "anytime friend"|"k"} says the message. Short and sweet.
-    - + The Metic's Chair -> Officer
+    - + DRILL -> Top
 
 
 
@@ -226,13 +232,13 @@ I'm Paul!
     // -- + Decrease Trail
     //     ~change(TRAIL,-20)
     //     -> Report
-    
-    -> InterviewQuartermaster
+    ++ Carry on. -> Officer
+    ++ One more thing... -> InterviewOread
 + Other option.
     -> InterviewQuartermaster
 + As you where.
     The Quartermaster grins, before diving back into a ledger.
-    - + The Metic's Chair -> Officer
+    ++ DRILL -> Top
 
 
 
@@ -257,6 +263,8 @@ I'm Caolain!
         - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
         - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
+    ++ Carry on. -> Officer
+    ++ One more thing... -> InterviewOread
     
         // - + Increase Depth
     //     ~change(DEPTH,20)
@@ -271,12 +279,12 @@ I'm Caolain!
     //     ~change(TRAIL,-20)
     //     -> Report
     
-    -> InterviewPedon
+
 + Other option.
     -> InterviewPedon
 + As you where.
     The Quartermaster grins, before diving back into a ledger.
-    - + The Metic's Chair -> Officer
+    ++ DRILL -> Top
  
 
 
