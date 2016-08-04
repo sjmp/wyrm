@@ -93,7 +93,7 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
 + (Talent) {InterviewOread.Cithaeron == 3}{InterviewOread.Talent < 2} Can I have a go?
     {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time." -> InterviewOread}
     
-+ Report!
++ (Report) Report!
     {
         - DEPTH < 20: "Barely into the Crust. Skimming soil  
         - DEPTH < 40:  "Full Crust, Metis. On full tilt
@@ -107,6 +107,19 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
         - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
         - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
+    
+    // - + Increase Depth
+    //     ~change(DEPTH,20)
+    //     -> Report
+    // -- + Decrease Depth
+    //     ~change(DEPTH,-20)
+    //     -> Report
+    // -- + Increase Trail
+    //     ~change(TRAIL,20)
+    //     -> Report
+    // -- + Decrease Trail
+    //     ~change(TRAIL,-20)
+    //     -> Report
     
     -> InterviewOread
 + (Cithaeron) {InterviewOread.Cithaeron < 3} Can you explain this machinery?
