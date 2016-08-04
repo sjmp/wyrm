@@ -69,7 +69,7 @@ VAR SEENWORM = 0
  
  
 === Officer ===
-You sit on deck, at the very top of the Wyrmdigger. Second Metic {greekname()} suggests you call for an officer's report.  
+You sit on deck, at the very top of the Wyrmdigger. Sub-Metic {greekname()} suggests you call for an officer's report.  
 + Get a Sound Report from the Oread -> Oread
 + Check in with the Quartermaster -> Quartermaster
 + Ask the Pedon of the crew and Digger -> Pedon
@@ -189,12 +189,12 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
 + Step out into the light and heat. -> InterviewAeolikosTour
 
 =InterviewAeolikosTour
-The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {Sillouted against the blaze is the Chief Aeolikos, arms outstretched, "Metic! A pleasure!"|"Where next?" grins the Aeolikos}
+The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {Silhouetted against the blaze is the Chief Aeolikos, arms outstretched, "Metic! A pleasure!"|"Where next?" grins the Aeolikos}
 * {InterviewAeolikosTour.heat > 0} Continue... Down... Where... 
     Your head swims. The heat, ever present, becomes too much. The Chief Aeolikos grabs your arm firmly "Easy now. Let's get back. You've done better than most. Better than I did. Come down again sometime. I appreciated it. Send me poetry. I miss poetry, down here." 
     ++ You come around, back on deck -> Officer
 * {InterviewAeolikosTour.heat < 1}Talk to the Aeolikos
-    You talk of the Aeolipile, pressure controls, steam driving, the gear shaft for the driller. They are really rather erudite, even admitting to once having been an Second Metic themselves. "My unfortunate writing impedement meant I could only go so far. Besides, this is my real passion." They beam ear to ear. 
+    You talk of the Aeolipile, pressure controls, steam driving, the gear shaft for the driller. They are really rather erudite, even admitting to once having been a Sub-Metic themselves. "My unfortunate writing impediment meant I could only go so far. Besides, this is my real passion." They beam ear to ear. 
     ++ (heat) Weather the heat -> InterviewAeolikosTour
 + {InterviewAeolikosTour.heat < 1}Examine the Aeolipile
     A ten foot sphere of spinning bronze, blowing white hot. "Quite impressive, no?" asks the Chief Aeolikos. "I built it myself. It's a hybrid - The Makedonians build great Male steam engines, the Athenians Female. This is something altogether different. Special." They grin that broad grin. "Much like you and I, eh, Metic?"
@@ -205,30 +205,30 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
 
 //HEAT & MORALE
 = Quartermaster
-"Welcome!" The Quartermaster is a well built, bearded gentlemen. He exhales lurid blue pipesmoke. He's smiling; he's usually smiling. "Come in Metic! Come sit. Drink?" His eyes are two different colours; {Oread: Didn't the Oread have something strange with her eyes too?|It's really rather distracting.} {InterviewOread.Talent: This |Was not}
+"Welcome!" The Quartermaster is a well built, bearded gentlemen. He exhales lurid blue pipesmoke. {{CREW>40}He's smiling; he's usually smiling.|He's not smiling today...} {{CREW>40}"Come in Metic! Come sit. Drink?"|"Oh. {PLAYERNAME}. Good to see you're still on your feet. Want something?"}. His eyes are two different colours; {Oread: Didn't the Oread have something strange with her eyes too?|It's really rather distracting.}
 -> InterviewQuartermaster
 
 = InterviewQuartermaster
 + How goes the mission?
     {
-        - HEAT < 20: His fingers drum the desk. "We're comfortable enough, considering."
-        - HEAT < 40: One finger taps the desk. "I'm getting warm, I must say. Nothing unbearable, though."
+        - HEAT < 20: His fingers drum the desk. "We're comfortable enough, considering. 
+        - HEAT < 40: One finger taps the desk. "I'm getting warm, I must say. Nothing unbearable, though.
         - HEAT < 60: He crossed his arms. "Something needs to be done about this heat.
-        - HEAT < 80: He fans himself with his pipe. "This heat is getting too much, I must say."
-        - else: His face is glistening. His eyes are just a bit wild. "Hot, Metis. Very hot."
+        - HEAT < 80: He fans himself with his pipe. "This heat is getting too much, I must say.
+        - else: His face is glistening. His eyes are just a bit wild. "Hot, Metis. Very hot.
     }<>{
-        - CREW < 20: ." She looks bored. "Cithaeron's got nothing. Rocks. Soil. Ruins. Soil." 
-        - CREW < 40: ..." Her ear is against a metal tube. "Something... Maybe volcanic. Unsure."
-        - CREW < 60: . I hear it, though. Wyrm-noise. Faint, rythmic, close." She puts up her hand to ward you off.
-        - CREW < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
-        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
+        - CREW < 20: " He looks desperately at you. His office is strewn with empty drinking vessels of various kinds. "We have to get out of here. I've seen this sort of thing before. One more day, that's all it'll take. One more day. After that..." he trails off, and stares glumly at the floor. Outside, a crewman recites something about the joy of dirt. 
+        - CREW < 40: " He grimaces. "Things are looking pretty ugly, in all honesty. If we don't do something soon... well. I won't worry you."
+        - CREW < 60: " He sips pensively from a {~tankard|flask|jar|glass|mug}. "Hearing some murmurs among the crew. {~Haven't had a good birthday party in a while, I think.|Fresh food's are running low. Plenty of cans to go round, mind.|Some of them were expecting more excitement.|Cabin fever, I suspect.|They could use a drink.|}"
+        - CREW < 80: " He takes a swig from his {~tankard|flask|jar|glass|mug}. "Crew could be more enthusiastic, but I don't mind. Tried throwing a party? That usually cheers them up."
+        - else:" Cheerful, he raises his {~tankard|flask|jar|glass|mug}. "Crew's getting on as well as I could ask for, though. If that's not cause for celebration, what is?"
     }
     
         // - + Increase Depth
-    //     ~change(DEPTH,20)
+    //     ~change(CREW,20)
     //     -> Report
     // -- + Decrease Depth
-    //     ~change(DEPTH,-20)
+         ~change(CREW,-20)
     //     -> Report
     // -- + Increase Trail
     //     ~change(TRAIL,20)
@@ -236,14 +236,21 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
     // -- + Decrease Trail
     //     ~change(TRAIL,-20)
     //     -> Report
-    ++ Understood -> InterviewQuartermaster
-+ Other option.
-    -> InterviewQuartermaster
-+ Back to Dilling.
+    ++ Carry on. -> Officer
+    ++ One more thing... -> InterviewQuartermaster
++ Accept a drink from the Quartermaster
+    -> InterviewQuartermasterBooze
++ Back to Drilling.
     The Quartermaster grins, before diving back into a ledger.
     ++ DRILL -> Top
 
+=InterviewQuartermasterBooze
+He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule} {~sloshing|fizzing|flat|bubbling} {~tankard|flask|jar|glass|mug|vessel|bowl|pot}{|||, inscribed with{wyrms|dragons|titans|colossi|earth|a drill|inscriptions|an Aeolipile|a mushroom|bats|horses|Aristotle|triangles|geometry|birds|your face|his face|a beard|a bard|a band|nothing}and full }of something {~green|foul|purple|wine-y|beer-y|translucent|transparent|colourful|suspicious|potent|distracting|tempting|watery|exceptional|wispy|translucent|sunset|murky|rose-gold|dirty|muddy|unappealing|unappetizing|appealing|slimy|dark|bright|}. You take a sip... tastes {~bad: like {~mud|dirt|wyrmslime|grass|oil|metal|hair|earwax|burning|soil|horses|sour grapes|bad apples|straight-up wheat|blood|and yet unlike anything you've ever had before|wet socks|unwelcome news}|decent: like {~cold water|passable beer|a raw egg|orange juice|apple juice|passable cider|passable mead|passable wine|strong coffee|bittersweetness|lambswool|bitterness|straight-up lemon juice}|good: like {~fine wine|fine beer|fine cider|fine mead|water from a mountain-spring|drinking a wolf's tooth|drinking velvet|drinking silver|a shock to the senses}|great: like {~drinking a cloud|listening to a Homeric epic|victory|the gods' own|Ambrosia|the kind of water a princess might drink|drinking silk|gold|drinking the open sky|drinking the deep darkness of space|good news|elemental fire|elemental water|elemental air|elemental earth|the aether}}.
 
++Another!
+->InterviewQuartermasterBooze
++Back to Business
+->Officer
 
 
 //MORALE & DEPTH
