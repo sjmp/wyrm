@@ -72,7 +72,7 @@ VAR SEENWORM = 0
 You sit on deck, at the very top of the Wyrmdigger. Second Metic {greekname()} suggests you call for an officer's report.  
 + Get a Sound Report from the Oread -> Oread
 + Check in with the Quartermaster -> Quartermaster
-+ Ask the Pedon and the crew and Digger -> Pedon
++ Ask the Pedon of the crew and Digger -> Pedon
 + Consult the Chief Aeolikos -> Aeolikos
 
 
@@ -85,6 +85,7 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
 = InterviewOread
 + (Talent) {InterviewOread.Cithaeron == 3}{InterviewOread.Talent < 2} Can I have a go?
     {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time."}
+    ++ DRILL -> Top
     
 + (Report) Sound report, please, Oread!
     She doesn't turn away from her work. {
@@ -100,8 +101,7 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
         - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
         - else: \-" She screws her eyes up in pain, "The pain! By Zeus... here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
     }
-    ++ Carry on. -> Officer
-    ++ One more thing... -> InterviewOread
+    ++ Understood -> InterviewOread
     
     // - + Increase Depth
     //     ~change(DEPTH,20)
@@ -149,8 +149,7 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
         - HEAT < 80: high. water low. getting crit- critic- cri- bad. losing control
         - else: have sealed boiler. vents dont work. men died. must stop. too hot. is bad. trapped. the heat is
     } STOP"<> {HEAT > 80: The piece of paper is charred all over. The capsule is red hot. The pipe itself, bent in the heat. They could be dead. The scroll slips from your sweat-slicked hands|{~The tube is filthy, covered in grime. Dirty fingerprints are all over the scroll|Enclosed in the capusle was two hefting pieces of coal. This explains the return delay|The edges of the paper are stained. They've tried spelling 'SPEED' three or four times on this one}}.
-    ++ Carry on. -> Officer
-    ++ One more thing... -> InterviewOread
+    ++ Understood. -> InterviewOread
     
     //     - + Increase H
     //     ~change(HEAT,20)
@@ -175,9 +174,9 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
     You send down a thin volume from the Digger's library "much apprecited! will remember this. thank"
     -> InterviewAeolikos
     
-+ Sign off.
++ Back to Drilling.
     "k" says the message. A person of many words.
-    - + The Metic's Chair -> Officer
+    - + DRILL -> Top
     
 = Tour
 "Gud!" says the return message. "Honesty is best policy. Is danggerous here and need that." You descend down, through the levels. The corridors get lower, the staircases turn to ladders. You squeeze through the emergency seal and step out into light and heat. A great room, larger even than the deck, and spinning at its core - The Aeolipile. Silhouetted against the blaze is the Chief Aeolikos, arms outstretched, "A pleasure to finally meet you, Metic!"
@@ -237,8 +236,7 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
     // -- + Decrease Trail
     //     ~change(TRAIL,-20)
     //     -> Report
-    ++ Carry on. -> Officer
-    ++ One more thing... -> InterviewQuartermaster
+    ++ Understood -> InterviewQuartermaster
 + Other option.
     -> InterviewQuartermaster
 + Back to Dilling.
@@ -250,45 +248,38 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
 
 //MORALE & DEPTH
 = Pedon
-I'm Caolain!
+{The Pedon is not what you expect. You imagined a similarly minded Metic, a tall, older gentleman of great beard and wisdom. Instead the Metic is |The Metic today is, as always, }impossibly youthful, boiling over with frenetic energy. The lad steps up with a quick, slightly askew salute.
 -> InterviewPedon
 
 = InterviewPedon
-+ Report!
-    {
-        - DEPTH < 20: "Barely into the Crust. Skimming soil  
-        - DEPTH < 40:  "Full Crust, Metis. On full tilt
-        - DEPTH < 60:  "Upper Lithosphere. Picking up a fair amount
-        - DEPTH < 80: "Lower Lithosphere." Her eyes are clenched tight "Lot of interference down here
-        - else: Her face is gaunt. Etched with sweat. "Mantle. So low. I can't tell what's what
-    }<>{
-        - TRAIL < 20: ." She looks bored. "Cithaeron's got nothing. Rocks. Soil. Ruins. Soil." 
-        - TRAIL < 40: ..." Her ear is against a metal tube. "Something... Maybe volcanic. Unsure."
-        - TRAIL < 60: . I hear it, though. Wyrm-noise. Faint, rythmic, close." She puts up her hand to ward you off.
-        - TRAIL < 80: , yet here it is. The Wyrm. We're close. So close. I can feel it. All around us."
-        - else: \-" She screws her eyes up in pain, "The pain! By Zeus... Here! Outside, it's-" She bites off her words and clamps her hands over her ears. The machinery is vibrating. The Wyrmdigger is vibrating. You are vibrating.
++ (Report)Report!
+    A rush of words; {
+        - CREW < 20: "I've gathered what men we have left!" His hand trembles "One last push!
+        - CREW < 40: "That last sortie was..." His face contorts "The crew took it bad. We'll pull through!
+        - CREW < 60:  "We're down a crewperson or two!" He fidgets, "Poor {greekname()}. Working hard, though!
+        - CREW < 80: "Still in fine spirits! Nothing we've not handle before, I guess!
+        - else: "Doing good! That is, the crew are, Metic! All in one piece! 
+    }<> {
+        - DEPTH < 20: Easy driving, though! Piloting, that is, or Pedoning, I guess. Or... Anyway, not that deep, yet!"
+        - DEPTH < 40: She's straining, Metic, but there's much more in her! Barely into hard rock yet!"
+        - DEPTH < 60: The Wyrmdigger is grand. In her element! Nothing can stop her!"
+        - DEPTH < 80: But we are so, so deep. I've never been..." He trails off, looking away.
+        - else: "Our depth is... Is..." He locks eyes with you. There is a fire in there. A glint of something wild and wondrous and wrong. "Deep. So deep. Deeper than anyone has ever gone." He smiles, a huge, wild grin showing many, many teeth.
     }
-    ++ Carry on. -> Officer
-    ++ One more thing... -> InterviewOread
-    
-        // - + Increase Depth
-    //     ~change(DEPTH,20)
-    //     -> Report
-    // -- + Decrease Depth
-    //     ~change(DEPTH,-20)
-    //     -> Report
-    // -- + Increase Trail
-    //     ~change(TRAIL,20)
-    //     -> Report
-    // -- + Decrease Trail
-    //     ~change(TRAIL,-20)
-    //     -> Report
-    
+    ++ Understood. -> InterviewPedon
 
-+ Other option.
-    -> InterviewPedon
++ Talk to the Pedon {Dreams < 2: about Dreams}
+    You grab the Pedon just before turning in for the night. {
+    - Dreams < 1: He's a little shy at first, but opens up with a drink or two. He's very interested in dreams, for some reason. "Have you had any? Any dreams about Wyrms?". You're more interested in his understanding of Wyrm biology, which seems solid, but the topic bores him.
+    - Dreams < 2: You come rushing back. He grins that broad, broad grin. "We're all having them now." he says, "All of us, and more every day. I think {greekname()}, you know, the {crewType()} that we couldn't wake up? He's got something to do with it." You feel a creeping sensation. Fear?
+    - Dreams < 3: The Pedon is smiling even wider as you rush to him with a stack of your own dream notes. "The food!" he says. "It's the food! {crewType()} {greekname()} wasn't eating and his dreams, well, they stopped! Mystery solved! Panic over! Science prevails!" This does not help. You ask him if he's concerned; "Nonsense! All will be well! All will be well!" and with that he pushes you from the door. Perhaps the Pedon is more Metic than you, after all...
+    - else: He laughs - "All will be well and all manner of things will be well. Once you know a thing, you cannot fear it. Fear is the mind killer, dontcha know!"
+    }
+    ++ I must go...
+    The Pedon nods furiously. "I have notes to compile..."
+    +++ DRILL -> Top
 + As you where.
-    The Quartermaster grins, before diving back into a ledger.
+    The Pedon saunters off, almost aimlessly.
     ++ DRILL -> Top
  
 
