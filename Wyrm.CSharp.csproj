@@ -75,6 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Drilling\DrillingController.cs" />
+    <Compile Include="Assets\Lore\LoreController.cs" />
+    <Compile Include="Assets\Main\MainController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Ink\Template\Template.txt" />
