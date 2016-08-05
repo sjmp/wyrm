@@ -16,8 +16,7 @@ VAR WYRMDESC = ""
 VAR SEENINTRO = 0
 VAR SEENWORM = 0
 
-// {wormspecies()}
-// {drill()}
+{drill()}
 + On Deck -> Officer
 + {CREW < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Mutiny -> Mutiny
 + {TRAIL > 60}{not WyrmGlimpse}{CREW > 0}{HEAT < 99}{DEPTH < 99} There! There! -> WyrmGlimpse
@@ -53,7 +52,7 @@ VAR SEENWORM = 0
 ~ x = y
 
 ==function drill()==
-~DEPTH=1+DEPTH+TRAIL
+~DEPTH=DEPTH
 
 ==function greekname()==
 ~return "{~Percalus|Euphro|Phylace|Limnoreia|Megaera|Glyke|Ione|Medea|Scylla|Amatheia|Hermione|Ctimene|Milo|Astyocheia|Hecuba|Callianessa|Hermine|Megara|Dirce|Artemidora|Plutarch|Theophanes|Thyrsos|Pittacus|Copreus|Panaetius|Epimenes|Hermeros|Pigres|Apollodoros|Phineus|Agamedes|Oliatos|Peteos|Phaestus|Apisaon|Demonax|Dardanus|Aristogeiton|Asopodoros}"
@@ -248,7 +247,7 @@ He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule}
 
 //MORALE & DEPTH
 = Pedon
-{The Pedon is not what you expect. You imagined a similarly minded Metic, a tall, older gentleman of great beard and wisdom. Instead the Metic is |The Metic today is, as always, }impossibly youthful, boiling over with frenetic energy. The lad steps up with a quick, slightly askew salute.
+{The Pedon is not what you expect. You imagined a similarly minded Metic, a tall, older gentleman of great beard and wisdom. Instead the Metic is |The Metic today is, as always, }impossibly youthful, boiling over with frenetic energy. The lad steps up with a quick salute, slightly askew.
 -> InterviewPedon
 
 = InterviewPedon
@@ -257,7 +256,7 @@ He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule}
         - CREW < 20: "I've gathered what men we have left!" His hand trembles "One last push!
         - CREW < 40: "That last sortie was..." His face contorts "The crew took it bad. We'll pull through!
         - CREW < 60:  "We're down a crewperson or two!" He fidgets, "Poor {greekname()}. Working hard, though!
-        - CREW < 80: "Still in fine spirits! Nothing we've not handle before, I guess!
+        - CREW < 80: "Still in fine spirits! Nothing we haven't handled before, I guess!
         - else: "Doing good! That is, the crew are, Metic! All in one piece! 
     }<> {
         - DEPTH < 20: Easy driving, though! Piloting, that is, or Pedoning, I guess. Or... Anyway, not that deep, yet!"
@@ -295,7 +294,7 @@ Your crew are tired of being cooped up in this metal coffin. "{~We miss the sun!
 Diplomacy never hurt anyone; but it takes time, time, precious time, while all the while the heat of the earth seeps into your wyrmdigger.
 *{Mutiny>0}[Engage them in debate.] 
     If we turn back now, what was the point of all this? Some of your crew mumble in agreement; but that argument isn't likely to work twice.
-    ~change(HEAT,5)
+    ~change(HEAT,10)
 *{Mutiny>1}[Put it to a vote]
     The atmosphere is nervous; no one person is entirely sure of their neighbour's convictions. In the end, the tie is broken by a single vote; yours.
     ~change(HEAT,10)
@@ -322,14 +321,14 @@ Brutal, short and to the point; violence is the answer to many questions.
 ~temp birthdayboy = greekname()
 It's {birthdayboy}'s birthday today! {|It's considered lucky to have two birthdays in one voyage.|Three must be even luckier.|Four birthdays is a bit much.|Five in one trip? What?|Six???|Seven??????????|Eight? This is a bit daft.|The crew are definitely trying to pull something here.}
 +Throw them a party.
-    Hooray! {birthdayboy} is happy{change (CREW,5)}, but {~the next morning, you find that somebody drunkenly nudged you off course. You've spent the past few hours heading away from the worm! {change (TRAIL, -10)}|somebody got a bit too rowdy and damaged some of the hull. {change (HEAT, 10)}|when the hangover hits, they won't be. {change (CREW,-8)}|the wyrm probably isn't.|everybody was too busy partying to check on the drill, and you've dug deeper than you expected {change (DEPTH,5)}}
+    Hooray! {birthdayboy} is happy{change (CREW,10)}, but {~the next morning, you find that somebody drunkenly nudged you off course. You've spent the past few hours heading away from the worm! {change (TRAIL, -10)}|somebody got a bit too rowdy and damaged some of the hull. {change (HEAT, 10)}|when the hangover hits, they won't be. {change (CREW,-6)}|the wyrm probably isn't.|everybody was too busy partying to check on the drill, and you've dug deeper than you expected {change (DEPTH,10)}}
 +Ignore them.
 {birthdayboy} and all their friends are very sad. {change (CREW,-5)}
     - + [DRILL] -> Top
 
 
 == Drill_1 ==
-Your drill churns ever onward, through miles of dirt and stone. You have a quiet evening to yourself. 
+Your drill churns ever onward, through miles of dirt and stone. You have a quiet evening to yourself. {drill()}
 ->lazytime
 =lazytime
 +[Enjoy the interlude]
@@ -484,7 +483,7 @@ You swap {~some surface-trinkets|a few poems|some manuscripts} for {~some useful
 ==WyrmGlimpse==
 Shouting from the observation deck! There've been sightings of something pale and undulating, just beyond the drill's tip. Could it be the {WYRMDESC} {WYRMNAME} you've been hunting?
 +[Charge onwards recklessly!]
-    This is it! This is what you've been looking for! You whip the stokers up into a frenzy (not literally, of course), and the wyrmdigger lurches forward, scraping along the tunnel walls. {change (TRAIL,10)} {change (HEAT,5)}
+    This is it! This is what you've been looking for! You whip the stokers up into a frenzy (not literally, of course), and the wyrmdigger lurches forward, scraping along the tunnel walls. {change (TRAIL,15)} {change (HEAT,10)} {change (DEPTH,10)}
 +[Cautiously advance]
     You've come this far; no need to throw it all away at the final hurdle. Slowly, steadily, your drill weaves its way into the wyrm's tunnel.
 -    ->Glimpse2
