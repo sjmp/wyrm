@@ -24,24 +24,24 @@ VAR SEENWORM = 0
 + {DEPTH > 25}{CREW > 0}{HEAT < 99}{DEPTH < 99} A Party! -> Birthday
 + {DEPTH < 25}{CREW > 0}{HEAT < 99}{DEPTH < 99} Ever Deeper -> Drill_1
 + {DEPTH > 25}{DEPTH < 50}{CREW > 0}{HEAT < 99}{DEPTH < 99} Ever Warmer -> Drill_2
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99}Downwards -> Dozing_off
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} {CREW < 75} A Knock -> Concerns
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 51} {DEPTH < 75} Deeper Still -> Drill_3
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 76} Onwards -> Drill_4
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} {CREW < 65} Biscuits Again -> Ration_trouble
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} Rumbling On -> tracks
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} A Creak -> weird_creaking
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} A Bang! -> tremor
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 60} Wyrmcast! -> Wyrmcast
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99} {DEPTH > 10} Lost -> lost_trail
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 60} Gas! Gas! -> gasdanger
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 60} Diamonds! -> Diamonds
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 40} Mushrooms -> Shroom
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99}{DEPTH > 50} The Deep-Cave -> Encampment
-+ {CREW > 0}{HEAT < 99}{DEPTH < 99}{HEAT > 60} The Heat -> sweltering
++ {CREW > 1}{HEAT < 99}{DEPTH < 99}Downwards -> Dozing_off
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} {CREW < 75} A Knock -> Concerns
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} {DEPTH > 51} {DEPTH < 75} Deeper Still -> Drill_3
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} {DEPTH > 76} Onwards -> Drill_4
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} {CREW < 65} Biscuits Again -> Ration_trouble
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} Rumbling On -> tracks
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} A Creak -> weird_creaking
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} A Bang! -> tremor
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} {DEPTH > 60} Wyrmcast! -> Wyrmcast
++ {CREW > 1}{HEAT < 99}{DEPTH < 99} {DEPTH > 10} Lost -> lost_trail
++ {CREW > 1}{HEAT < 99}{DEPTH < 99}{DEPTH > 60} Gas! Gas! -> gasdanger
++ {CREW > 1}{HEAT < 99}{DEPTH < 99}{DEPTH > 60} Diamonds! -> Diamonds
++ {CREW > 1}{HEAT < 99}{DEPTH < 99}{DEPTH > 40} Mushrooms -> Shroom
++ {CREW > 1}{HEAT < 99}{DEPTH < 99}{DEPTH > 50} The Deep-Cave -> Encampment
++ {CREW > 1}{HEAT < 99}{DEPTH < 99}{HEAT > 60} The Heat -> sweltering
 + {DEPTH > 99} Dug Too Deep -> DepthFailure
 + {HEAT > 99} Structural Integrity -> HeatFailure
-+ {CREW<1} The Pit-Madness -> CrewFailure
++ {CREW < 1} The Pit-Madness -> CrewFailure
 
 
 
@@ -52,8 +52,30 @@ VAR SEENWORM = 0
 ~ x = y
 
 ==function drill()==
-~DEPTH=DEPTH
-
+{shuffle:
+- ~change(DEPTH, 5)
+- ~change(DEPTH, 10)
+- ~change(DEPTH, 15)
+}
+{shuffle:
+- ~change(HEAT, -10)
+- ~change(HEAT, -5)
+- ~change(HEAT, 0)
+- ~change(HEAT, 5)
+- ~change(HEAT, 10)
+- ~change(HEAT, 15)
+- ~change(HEAT, 20)
+}
+{shuffle:
+- ~change(CREW, -20)
+- ~change(CREW, -10)
+- ~change(CREW, 10)
+}
+{shuffle:
+- ~change(TRAIL, 0)
+- ~change(TRAIL, 10)
+- ~change(TRAIL, 20)
+}
 ==function greekname()==
 ~return "{~Percalus|Euphro|Phylace|Limnoreia|Megaera|Glyke|Ione|Medea|Scylla|Amatheia|Hermione|Ctimene|Milo|Astyocheia|Hecuba|Callianessa|Hermine|Megara|Dirce|Artemidora|Plutarch|Theophanes|Thyrsos|Pittacus|Copreus|Panaetius|Epimenes|Hermeros|Pigres|Apollodoros|Phineus|Agamedes|Oliatos|Peteos|Phaestus|Apisaon|Demonax|Dardanus|Aristogeiton|Asopodoros}"
 
@@ -68,12 +90,39 @@ VAR SEENWORM = 0
  
  
 === Officer ===
-You sit on deck, at the very top of the Wyrmdigger. Sub-Metic {greekname()} suggests you call for an officer's report.  
-+ Get a Sound Report from the Oread -> Oread
-+ Check in with the Quartermaster -> Quartermaster
-+ Ask the Pedon of the crew and Digger -> Pedon
-+ Consult the Chief Aeolikos -> Aeolikos
-
+~ temp urgency = 0
+You sit on deck at the very top of the Wyrmdigger. "My report, Metic." Second Metic {greekname()} reads from a stenikoprika, "The Wyrmdigger is <>
+{
+- DEPTH < 50: ~urgency++
+    the deepest it's ever been. We're
+}
+<> <>
+{
+- TRAIL > 50: ~urgency++
+    getting closer to the wyrm. The men are
+}
+<> <>
+{
+- CREW < 50: ~urgency++
+    almost at mutiny point. All of us are
+}
+<> <>
+{
+- HEAT > 50: ~urgency++
+    hot, and getting hotter. We're
+}
+<> <>
+{
+- urgency == 0: all digger-shape and Piraeus fashion. If I may, I'd suggest talking to an officer anyway."
+- urgency == 1: alright, for now."
+- urgency == 2: straining, Metic."
+- urgency == 3: struggling. The Officers must be able to help."
+- urgency == 4: all... Going to..." They break off, grabbing you by the collar. "I won't to die down here, you hear?" they hiss through gritted teeth "I won't-" Another Second Metic punches them. You beat a hasty retreat.
+}
++ The Oread, who listens to the earth outside -> Oread
++ The Quartermaster, whose responsibility is the crew -> Quartermaster
++ The Pedon, Wyrmdigger pilot and captain -> Pedon
++ The Chief Aeolikos, the engine master -> Aeolikos
 
 //DEPTH & TRAIL
 //Listening person
@@ -427,7 +476,7 @@ If you keep going down, you'll find it eventually. {~{change (TRAIL,5)}|{change 
 
 
 ==gasdanger==
-Chief Aeoliphile warns you that you're running straight into a pocket of gas.
+The Demi-Ostiphilister warns you that you're running straight into a pocket of gas.
 +[Redirect]
 Not worth the risk.{~{change (TRAIL,5)}|{change (TRAIL,-5)}|{change (DEPTH,5)}|{change (DEPTH,-5)}}
 +[Plow on through]
