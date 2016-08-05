@@ -93,25 +93,29 @@ VAR SEENWORM = 0
 ~ temp urgency = 0
 You sit on deck at the very top of the Wyrmdigger. "My report, Metic." Second Metic {greekname()} reads from a stenikoprika, "The Wyrmdigger is <>
 {
-- DEPTH < 50: ~urgency++
-    the deepest it's ever been. We're
+- DEPTH > 33:
+    deep, but managing. We're <>
+- DEPTH > 66: ~urgency++
+    the deepest it's ever been. We're <>
 }
-<> <>
 {
-- TRAIL > 50: ~urgency++
-    getting closer to the wyrm. The men are
+- TRAIL > 33:
+    starting to speed up. The men are <>
+- TRAIL > 66: ~urgency++
+    getting closer to the wyrm. The men are <>
 }
-<> <>
 {
-- CREW < 50: ~urgency++
-    almost at mutiny point. All of us are
+- CREW < 66:
+    tired, but in good spirits. All of us are <>
+- CREW < 33: ~urgency++
+    almost at mutiny point. All of us are <>
 }
-<> <>
 {
+- HEAT > 33:
+    hot, but we have water. We're <>
 - HEAT > 50: ~urgency++
-    hot, and getting hotter. We're
+    hot. The hull can't take much more. We're <>
 }
-<> <>
 {
 - urgency == 0: all digger-shape and Piraeus fashion. If I may, I'd suggest talking to an officer anyway."
 - urgency == 1: alright, for now."
@@ -132,7 +136,8 @@ The Oread is suspended above you, strapped into {InterviewOread.Cithaeron: the C
 
 = InterviewOread
 + (Talent) {InterviewOread.Cithaeron == 3}{InterviewOread.Talent < 2} Can I have a go?
-    {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time."}
+    ~ change(DEPTH, -30)
+    {She pauses for a beat, shocked, then roars with laughter. Worried crew turn to watch. "Sure! Sure! Go for it!" You strap in. She talks you free it and you... Feel. Feel for changes, movement, the lack of movement. A chrous of rock. A solo of water. A harmony of gas. Your feet for bass, your hands for tenor. It's not an experience for words. She grins broadly. "Nice. Come back anytime, Chief. Then we can really sing."|"Sorry Chief, not today. Limestone interference. Another time."} 
     ++ DRILL -> Top
     
 + (Report) Sound report, please, Oread!
@@ -223,6 +228,7 @@ The Chief Aeolikos is down in the bowels of the Wyrmdigger, close to the drill. 
     ++ You're honest - I haven't, I'm afraid. -> InterviewAeolikosTourIntro
   
 + (Talent){InterviewAeolikosTour == 1} Send down poetry.
+    ~ change(HEAT, -30)
     You send down a thin volume from the Digger's library "much apprecited! will remember this. thank"
     -> InterviewAeolikos
     
@@ -285,8 +291,9 @@ The Aeolipile spins on. Stokers work furiously, shirtless muscles glistening. {S
     ++ DRILL -> Top
 
 =InterviewQuartermasterBooze
+~ change(CREW, 5)
 He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule} {~sloshing|fizzing|flat|bubbling} {~tankard|flask|jar|glass|mug|vessel|bowl|pot}{|||, inscribed with{wyrms|dragons|titans|colossi|earth|a drill|inscriptions|an Aeolipile|a mushroom|bats|horses|Aristotle|triangles|geometry|birds|your face|his face|a beard|a bard|a band|nothing}and full} of something {~green|foul|purple|wine-y|beer-y|translucent|transparent|colourful|suspicious|potent|distracting|tempting|watery|exceptional|wispy|translucent|sunset|murky|rose-gold|dirty|muddy|unappealing|unappetizing|appealing|slimy|dark|bright|}. You take a sip... tastes {~bad: like {~mud|dirt|wyrmslime|grass|oil|metal|hair|earwax|burning|soil|horses|sour grapes|bad apples|straight-up wheat|blood|and yet unlike anything you've ever had before|wet socks|unwelcome news}|decent: like {~cold water|passable beer|a raw egg|orange juice|apple juice|passable cider|passable mead|passable wine|strong coffee|bittersweetness|lambswool|bitterness|straight-up lemon juice}|good: like {~fine wine|fine beer|fine cider|fine mead|water from a mountain-spring|drinking a wolf's tooth|drinking velvet|drinking silver|a shock to the senses}|great: like {~drinking a cloud|listening to a Homeric epic|victory|the gods' own|Ambrosia|the kind of water a princess might drink|drinking silk|gold|drinking the open sky|drinking the deep darkness of space|good news|elemental fire|elemental water|elemental air|elemental earth|the aether}}.
-
+    
 +Another!
 ->InterviewQuartermasterBooze
 +Back to Business
@@ -318,7 +325,8 @@ He offers you a {~big|large|huge|modest|small|decent|colossal|titanic|minuscule}
         The Pedon saunters off, almost aimlessly.
     +++ DRILL -> Top
 
-+ Talk to the Pedon {Dreams > 0: about Dreams}
++ {Dreams < 4} Talk to the Pedon {Dreams > 0: about Dreams}
+    ~ change(TRAIL, 5)
     {
     - Dreams == 0: He's a little shy at first, but opens up with a drink or two. He's very interested in dreams, for some reason. "Have you had any? Any dreams about Wyrms?" You're more interested in his understanding of Wyrm biology, which seems solid, but the topic bores him.
     - Dreams == 1: You come rushing back. He grins that broad, broad grin. "We're all having them now." he says, "All of us, and more every day. I think {greekname()}, you know, the {crewType()} that we couldn't wake up? He's got something to do with it." You feel a creeping sensation. Fear?
